@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="./register.css" />
+    <script src="register.js" type="module" defer></script>
+  </head>
+  <body>
+    <section class="registration">
+      <h1>Register</h1>
+
+      <form>
+        <input type="text" name="firstName" class="input" placeholder="First name" />
+        <input type="text" name="lastName" class="input" placeholder="Last name" />
+        <input type="email" name='email' class="input" placeholder="Email" />
+        <p class="hide" id="email-error"></p>
+        <input type="text" name="fn" class="input" placeholder="FN" />
+        <input
+          type="number"
+          name="course"
+          min="1"
+          max="4"
+          class="input"
+          placeholder="Course"
+        />
+        <input type="text" name="specialty" class="input" placeholder="Specialty" />
+        <input type="password" name="password" class="input" placeholder="Password" />
+        <button name="submit">Register</button>
+      </form>
+
+      <section class="login">
+        <p>
+          You have already registered?
+          <a href="./../login/login.html">Log in!</a>
+        </p>
+      </section>
+
+      <section class="hide" id="form-error"></section>
+    </section>
+  </body>
+</html>
