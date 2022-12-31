@@ -13,21 +13,21 @@
       <h1>Register</h1>
 
       <form>
-        <input type="text" name="firstName" class="input" placeholder="First name" />
-        <input type="text" name="lastName" class="input" placeholder="Last name" />
-        <input type="email" name='email' class="input" placeholder="Email" />
-        <p class="hide" id="email-error"></p>
-        <input type="text" name="fn" class="input" placeholder="FN" />
+        <input type="text" required name="first_name" class="input" placeholder="First name" />
+        <input type="text" required name="last_name" class="input" placeholder="Last name" />
+        <input type="email" required name='email' class="input" placeholder="Email" />
+        <input type="text" required name="fn" class="input" placeholder="FN" />
         <input
           type="number"
+          required
           name="course"
           min="1"
           max="4"
           class="input"
           placeholder="Course"
         />
-        <input type="text" name="specialty" class="input" placeholder="Specialty" />
-        <input type="password" name="password" class="input" placeholder="Password" />
+        <input type="text" required name="specialty" class="input" placeholder="Specialty" />
+        <input type="password" required name="password" class="input" placeholder="Password" />
         <button name="submit">Register</button>
       </form>
 

@@ -24,8 +24,6 @@ class UserRepository
         $params = ["fn" => $fn];
 
         $user = $this->db->executeQuery($query, $params)->fetch();
-        //echo json_encode($user);
-        //echo (bool)$user === null;
         return $user;
     }
 

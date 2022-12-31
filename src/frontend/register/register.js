@@ -7,6 +7,7 @@
     event.preventDefault();
 
     formError.classList.remove("error");
+
     formError.innerHTML = null;
 
     let data = {};
@@ -14,25 +15,20 @@
       data[i.name] = i.value;
     });
 
-    const email = data['email'];
+    //const email = data['email'];
     //if (!isValidEmail(email))
-    if (true) {
+    /*if (true) {
         const emailError = document.getElementById('email-error');
         emailError.classList.add('error');
         emailError.classList.remove('hide');
         emailError.innerText = 'Invalid email address';
-    }
+    } */
 
 
     saveUser(data)
-      .then((response) => {
-        if (response["success"] === false) {
-          throw new Error(response["error"]);
-        } else {
+      .then(() => {
           window.location.replace("../login/login.html");
-        }
-      })
-      .catch((error) => {
+      }).catch((error) => {
         formError.classList.add("error");
         formError.classList.remove("hide");
         const message = error;
@@ -42,10 +38,8 @@
 })();
 
 async function saveUser(data) {
-    //mocked exception
-  throw new Error("Unsupported operation");
   const response = await fetch(
-    "../../backend/controllers/user-controller.php",
+    "../../backend/endpoints/register.php",
     {
       method: "POST",
       headers: {
@@ -55,5 +49,9 @@ async function saveUser(data) {
     }
   );
 
-  return await response.json();
+  const responseJson = await response.json();
+  if (responseJson["success"] === false) {
+    throw new Error(responseJson["error"]);
+  }
+
 }
