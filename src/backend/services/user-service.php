@@ -30,6 +30,23 @@ class UserService
         $result = $this->userRepository->addUser($fn, $password, $email, $firstName, $lastName, $course, $specialty);
         return $result;
     }
+
+    function isUserValid($email, $password) {
+        $user = $this->userRepository->findUserByEmail($email);
+
+        // echo "user: ";
+        // print_r($user);
+        
+        if (empty($user)) {
+            throw new InvalidArgumentException("User with email $email does not exist.");
+        }
+
+        if ($user["password"] !== $password) {
+            throw new InvalidArgumentException("Invalid password");
+        }
+
+        return $user;
+    }
 }
 
 //for testing purposes

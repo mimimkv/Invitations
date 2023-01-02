@@ -31,7 +31,7 @@ class UserRepository
         $query = "SELECT * FROM users WHERE email=:email";
         $params = ["email" => $email];
 
-        $user = $this->db->executeQuery($query, $params)->fetch();
+        $user = $this->db->executeQuery($query, $params)->fetch(PDO::FETCH_ASSOC);
         return $user;
     }
 
