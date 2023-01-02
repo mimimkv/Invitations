@@ -48,11 +48,13 @@ class UserController
             $response["error"] = $e->getMessage();
         }
 
-        // print_r($user);
+        //print_r($user);
 
-        $_SESSION["email"] = $email;
-        $_SESSION["name"] = $user['first_name'];
-
+        if (isset($user)) {
+            $_SESSION["email"] = $email;
+            $_SESSION["name"] = $user['first_name'];
+        }
+        
         // echo $user['first_name'];
         
         return $response;
