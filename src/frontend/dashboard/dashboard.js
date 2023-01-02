@@ -9,14 +9,14 @@
     //console.log("he");
 
     const logoutButton = document.querySelector('.logout');
-    console.log(logoutButton);
+    // console.log(logoutButton);
 
     logoutButton.addEventListener('submit', (event) => {
         event.preventDefault();
     
         const url = "../../backend/endpoints/logout.php";
         fetch(url, settings)
-            .then(console.log("hellp"))
+            // .then(console.log("hellp"))
             .then(window.location.replace("../login/login.html"));
     }); 
 
