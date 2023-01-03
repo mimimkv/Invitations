@@ -1,0 +1,10 @@
+CREATE TABLE users(
+  fn INT PRIMARY KEY,
+  email VARCHAR(30) NOT NULL UNIQUE,
+  password VARCHAR(20) NOT NULL,
+  first_name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50) NOT NULL,
+  course INT NOT NUll,
+  specialty VARCHAR(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
