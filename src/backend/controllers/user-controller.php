@@ -2,6 +2,7 @@
 
 require_once '../services/user-service.php';
 require_once '../mappers/user-mapper.php';
+require_once '../services/token-service.php';
 
 class UserController
 {
@@ -34,9 +35,13 @@ class UserController
         session_start();
         $userCredentials = json_decode(file_get_contents('php://input'), true);
         //echo $userCredentials["email"];
+        //echo $userCredentials["remember-me"];
+        //echo $userCredentials["remember-me"] ? "true" : "false";
 
         $email = $userCredentials["email"];
         $password = $userCredentials["password"];
+        $rememberMe = $userCredentials["remember-me"] ? true : false;
+        // echo $rememberMe? "t" : "f";
 
         $response = ["success" => true];
         $user = null;
@@ -53,6 +58,11 @@ class UserController
         if (isset($user)) {
             $_SESSION["email"] = $email;
             $_SESSION["name"] = $user['first_name'];
+
+            if ($rememberMe) {
+                $tokenService = new TokenService();
+                $tokenService->createNewToken($email);
+            }
         }
         
         // echo $user['first_name'];

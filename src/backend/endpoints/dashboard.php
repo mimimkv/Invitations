@@ -1,5 +1,6 @@
 <?php
 
+    require_once('../services/token-service.php');
 
     session_start();
     // header("Content-type: application/json");
@@ -12,7 +13,23 @@
             $response = ["success" => false, "error" => "Unauthorized access"];
         }
     } else {
-        $response = ["success" => false, "error" => "Session expired"];
+
+        if($_COOKIE["token"]) { 
+            $tokenService = new TokenService();
+            $isValid = $tokenService->isValidToken($_COOKIE["token"]);
+
+            if($isValid) {
+                $userEmail = $isValid["user_email"];
+                $_SESSION["email"] = $userEmail;
+                // $_SESSION["fn"] = $userData->getFn();
+
+                $response = ["success" => true, "data" => $_SESSION["email"]];
+            } else {
+                $response = $isValid;
+            } 
+        } else {
+            $response = ["success" => false, "error" => "Session expired"];
+        }
     }
 
     echo json_encode($response);
