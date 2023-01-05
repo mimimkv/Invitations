@@ -51,8 +51,7 @@ class UserRepository
             "specialty" => $specialty
         ];
 
-        $newUser = $this->db->executeQuery($query, $params)->fetch();
-        return true;
+        return $this->db->executeQuery($query, $params);
     }
 }
 

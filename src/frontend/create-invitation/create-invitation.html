@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Invitation</title>
+    <link rel="stylesheet" href="./create-invitation.css" />
+    <script src="create-invitation.js" type="module" defer></script>
+    <script>
+        if (!localStorage.getItem('isLoggedIn')) {
+            window.location.replace("../login/login.html");    
+        }
+    </script>
+  </head>
+  <body>
+    <section class="create-invitation">
+      <h1>Create Invitation</h1>
+
+      <form>
+        <input
+          type="text"
+          required
+          name="title"
+          class="input"
+          placeholder="Title for the paper"
+        />
+        <input
+          type="text"
+          required
+          name="place"
+          class="input"
+          placeholder="Place for the presentation"
+        />
+
+        <button name="submit">Submit</button>
+      </form>
+
+      <section class="hide" id="form-error"></section>
+    </section>
+  </body>
+</html>
