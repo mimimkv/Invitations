@@ -28,6 +28,37 @@ class UserController
 
         return $response;
     }
+
+    public function login() 
+    {
+        session_start();
+        $userCredentials = json_decode(file_get_contents('php://input'), true);
+        //echo $userCredentials["email"];
+
+        $email = $userCredentials["email"];
+        $password = $userCredentials["password"];
+
+        $response = ["success" => true];
+        $user = null;
+        try {
+            $user = $this->userService->isUserValid($email, $password);
+
+        } catch(InvalidArgumentException $e) {
+            $response["success"] = false;
+            $response["error"] = $e->getMessage();
+        }
+
+        //print_r($user);
+
+        if (isset($user)) {
+            $_SESSION["email"] = $email;
+            $_SESSION["name"] = $user['first_name'];
+        }
+        
+        // echo $user['first_name'];
+        
+        return $response;
+    }
 }
 
 ?>
