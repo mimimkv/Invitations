@@ -18,7 +18,7 @@ class UserService
         return array_map(array('UserMapper', 'toDto'), $users);
     }
 
-    function addUser($fn, $password, $email, $firstName, $lastName, $course, $specialty) {
+    function addUser($fn, $email, $password, $firstName, $lastName, $course, $specialty) {
         if ($this->userRepository->findUserByFn($fn)) {
             throw new InvalidArgumentException("User with fn $fn already exists.");
         }
@@ -33,7 +33,7 @@ class UserService
 }
 
 //for testing purposes
-$userService = new UserService();
+/*$userService = new UserService();
 $result = $userService->getAllUsers();
 
 echo json_encode($result, JSON_UNESCAPED_UNICODE);
@@ -46,7 +46,7 @@ try {
     }
 } catch(InvalidArgumentException $e) {
     echo $e->getMessage();
-}
+} */
 
 
 ?>
