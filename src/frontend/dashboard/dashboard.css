@@ -8,6 +8,15 @@
     visibility: hidden;
 }
 
+#images {
+  width: 1000px;
+}
+
+#images img {
+  width: 800px;
+  margin: 100px 200px;
+}
+
 .lds-facebook {
     display: inline-block;
     position: relative;

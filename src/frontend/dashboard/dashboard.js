@@ -17,6 +17,14 @@
     fetch(url, settings).then(window.location.replace("../login/login.html"));
     localStorage.setItem('isLoggedIn', false);
   });
+
+  const images = document.getElementById('images');
+  const result = await getInvitation();
+
+  const image = document.createElement("img");
+  image.setAttribute('src', "data:image/jpg;base64," + result['image']);
+
+  images.appendChild(image);
 })();
 
 const loadUser = (data) => {
@@ -25,6 +33,16 @@ const loadUser = (data) => {
     document.body.innerHTML += data.name;
   } else {
     console.log(data.error);
-    window.location.replace("../login/login.html");
+    //window.location.replace("../login/login.html");
   }
 };
+
+
+async function getInvitation() {
+  const settings = { method: "GET" };
+  const url = "../../backend/endpoints/get-invitations.php";
+
+  return await fetch(url, settings)
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
+}

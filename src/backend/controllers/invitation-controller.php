@@ -46,6 +46,25 @@ class InvitationController
         return $response;
 
     }
+
+    public function getInvitation() {
+        $image = "../upload/misho@gmail.com_tibet1.jpg";
+        $imageResponse = base64_encode(file_get_contents($image));
+        //echo '<img src="data:image/jpg;base64,'.base64_encode(file_get_contents($image)).'">';
+        $response['image'] = $imageResponse;
+        return $response;
+    }
 }
+
+
+/*$image = "../upload/misho@gmail.com_tibet1.jpg";
+        $imageResponse = base64_encode(file_get_contents($image));
+        echo '<img src="data:image/jpg;base64,'.base64_encode(file_get_contents($image)).'">';
+        //$response['image'] = $imageResponse;
+        //return $response; */
+
+
+//$invitationController = new InvitationController();
+//$invitationController->getInvitation();
 
 ?>
