@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./create-invitation.css" />
     <script src="create-invitation.js" type="module" defer></script>
     <script>
-        if (!localStorage.getItem('isLoggedIn')) {
+        if (!localStorage.getItem('isLoggedIn') || localStorage.getItem('isLoggedIn') === 'false') {
             window.location.replace("../login/login.html");    
         }
     </script>
