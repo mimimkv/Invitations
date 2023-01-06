@@ -10,12 +10,19 @@
 
     formError.innerHTML = null;
 
-    let data = {};
+    /*let data = {};
     inputs.forEach((i) => {
       data[i.name] = i.value;
-    });
+    }); */
 
-    createInvitation(data)
+    const formData = new FormData();
+
+    formData.append(inputs[0].name, inputs[0].value);
+    formData.append(inputs[1].name, inputs[1].value);
+    console.log(inputs[2].name);
+    formData.append(inputs[2].name, inputs[2].files[0]);
+
+    createInvitation(formData)
       .then(() => {
         window.location.replace("../dashboard/dashboard.html");
       })
@@ -33,10 +40,10 @@ async function createInvitation(data) {
     "../../backend/endpoints/create-invitation.php",
     {
       method: "POST",
-      headers: {
+      /*headers: {
         "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
+      }, */
+      body: data
     }
   );
 

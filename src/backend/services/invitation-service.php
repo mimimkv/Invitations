@@ -10,12 +10,12 @@ class InvitationService {
         $this->invitationRepository = new InvitationRepository();
     }
 
-    public function createInvitation($title, $place) {
+    public function createInvitation($title, $place, $filename) {
         if ($this->invitationRepository->findInvitationByTitle($title)) {
             throw new InvalidArgumentException("Invitation with this title already exists");
         }
 
-        $result = $this->invitationRepository->createInvitation($title, $place);
+        $result = $this->invitationRepository->createInvitation($title, $place, $filename);
         return $result;
     }
 }

@@ -13,20 +13,38 @@ class InvitationController
 
     public function createInvitation()
     {
-        $invitationModel = call_user_func('InvitationMapper::toModel', json_decode(file_get_contents('php://input'), true));
+        $title = $_POST['title'];
+        $place = $_POST['place'];
+
+        $invitationModel = call_user_func('InvitationMapper::toModel', ['title' => $title, 'place' => $place, 'filename' => 'test.png']);
         $response = ["success" => true];
         try {
             $this->invitationService->createInvitation(
                 $invitationModel->getTitle(),
-                $invitationModel->getPlace()
+                $invitationModel->getPlace(),
+                $invitationModel->getFilename()
             );
         } catch (InvalidArgumentException $e) {
             $response["success"] = false;
             $response["error"] = $e->getMessage();
         }
 
+        // $invitationModel = call_user_func('InvitationMapper::toModel', json_decode(file_get_contents('php://input'), true));
+        // $response = ["success" => true];
+        // try {
+        //     $this->invitationService->createInvitation(
+        //         $invitationModel->getTitle(),
+        //         $invitationModel->getPlace(),
+        //         $invitationModel->getFilename()
+        //     );
+        // } catch (InvalidArgumentException $e) {
+        //     $response["success"] = false;
+        //     $response["error"] = $e->getMessage();
+        // }
+
 
         return $response;
+
     }
 }
 

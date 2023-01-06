@@ -9,7 +9,8 @@ class InvitationMapper
     {
         return new InvitationModel(
             $data["title"],
-            $data["place"]
+            $data["place"],
+            $data["filename"]
         );
     }
 
@@ -17,7 +18,8 @@ class InvitationMapper
     {
         return new InvitationDto(
             $invitation->getTitle(),
-            $invitation->getPlace()
+            $invitation->getPlace(),
+            $invitation->getFilename()
         );
     }
 }
