@@ -39,6 +39,14 @@ class InvitationRepository
         $invitation = $this->db->executeQuery($query, $params)->fetch();
         return $invitation;
     }
+
+    public function findInvitationByDateAndTime($date, $time) {
+        $query = "SELECT * FROM invitations WHERE date=:date AND time=:time";
+        $params = ["date" => $date, "time" => $time];
+
+        $invitation = $this->db->executeQuery($query, $params)->fetch();
+        return $invitation;
+    }
 }
 
 ?>
