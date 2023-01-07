@@ -10,9 +10,8 @@ if (!$_SESSION['email']) {
 }
 
 
-if ($_FILES['filename']['name']) {
+if ($_FILES && $_FILES['filename']['name']) {
     $filename = $_SESSION['email'] . '_' . $_FILES['filename']['name'];
-
     $location = '../upload/';
 
     $path = $location . $filename;

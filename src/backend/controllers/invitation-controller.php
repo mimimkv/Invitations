@@ -16,7 +16,12 @@ class InvitationController
         $title = $_POST['title'];
         $place = $_POST['place'];
 
-        $invitationModel = call_user_func('InvitationMapper::toModel', ['title' => $title, 'place' => $place, 'filename' => 'test.png']);
+        $filename = "NULL";
+        if ($_FILES) {
+            $filename = $_SESSION['email'] . '_' . 'invitation.png';
+        }
+
+        $invitationModel = call_user_func('InvitationMapper::toModel', ['title' => $title, 'place' => $place, 'filename' => $filename]);
         $response = ["success" => true];
         try {
             $this->invitationService->createInvitation(
@@ -54,6 +59,22 @@ class InvitationController
         $response['image'] = $imageResponse;
         return $response;
     }
+
+    public function getAllInvitations() {
+        $response['images'] = [];
+
+        $files = array_diff(scandir('../upload/'), array('.', '..'));
+        foreach($files as $x => $x_value) {
+            //echo "Key=" . $x . ", Value=" . $x_value;
+            //echo "<br>";
+            $imageResponse = base64_encode(file_get_contents('../upload/'.$x_value));
+            array_push($response['images'], $imageResponse);
+            
+          }
+
+        //echo $response['images'][0];
+        return $response;
+    }
 }
 
 
@@ -64,7 +85,7 @@ class InvitationController
         //return $response; */
 
 
-//$invitationController = new InvitationController();
-//$invitationController->getInvitation();
+$invitationController = new InvitationController();
+$invitationController->getAllInvitations();
 
 ?>
