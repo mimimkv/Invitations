@@ -15,9 +15,14 @@ class InvitationService {
             throw new InvalidArgumentException("Invitation with this title already exists");
         }
 
-        // todo check for date&time
+        $result = null;
+        
+        try {
+            $result = $this->invitationRepository->createInvitation($title, $place, $date, $time, $filename);
+        } catch(PDOException $e) {
+            throw new InvalidArgumentException("This time slot is already taken. Choose another one.");
+        }
 
-        $result = $this->invitationRepository->createInvitation($title, $place, $date, $time, $filename);
         return $result;
     }
 }

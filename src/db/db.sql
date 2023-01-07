@@ -20,5 +20,6 @@ CREATE TABLE invitations(
   place VARCHAR(50) NOT NULL,
   date date NOT NULL, 
   time time NOT NULL,
-  filename VARCHAR(30)
+  filename VARCHAR(30),
+  UNIQUE KEY unique_time(date, time)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
