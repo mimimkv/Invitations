@@ -20,7 +20,12 @@
     formData.append(inputs[0].name, inputs[0].value);
     formData.append(inputs[1].name, inputs[1].value);
     console.log(inputs[2].name);
-    formData.append(inputs[2].name, inputs[2].files[0]);
+    console.log(inputs[3].name);
+    console.log(inputs[4].name);
+
+    formData.append(inputs[2].name, inputs[2].value);
+    formData.append(inputs[3].name, inputs[3].value);
+    formData.append(inputs[4].name, inputs[4].files[0]);
 
     createInvitation(formData)
       .then(() => {

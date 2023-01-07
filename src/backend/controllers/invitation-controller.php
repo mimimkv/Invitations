@@ -15,13 +15,21 @@ class InvitationController
     {
         $title = $_POST['title'];
         $place = $_POST['place'];
+        $date = $_POST['date'];
+        $time = $_POST['time'];
 
-        $invitationModel = call_user_func('InvitationMapper::toModel', ['title' => $title, 'place' => $place, 'filename' => 'test.png']);
+        $invitationModel = call_user_func('InvitationMapper::toModel', ['title' => $title, 
+                                                                        'place' => $place, 
+                                                                        'date' => $date,
+                                                                        'time' => $time,
+                                                                        'filename' => 'test.png']);
         $response = ["success" => true];
         try {
             $this->invitationService->createInvitation(
                 $invitationModel->getTitle(),
                 $invitationModel->getPlace(),
+                $invitationModel->getDate(),
+                $invitationModel->getTime(),
                 $invitationModel->getFilename()
             );
         } catch (InvalidArgumentException $e) {

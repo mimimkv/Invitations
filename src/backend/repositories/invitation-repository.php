@@ -11,14 +11,16 @@ class InvitationRepository
         $this->db = new Database();
     }
 
-    public function createInvitation($title, $place, $filename)
+    public function createInvitation($title, $place, $date, $time, $filename)
     {
-        $query = "INSERT INTO invitations(title, place, filename)\n" .
-            "VALUES (:title, :place, :filename)";
+        $query = "INSERT INTO invitations(title, place, date, time, filename)\n" .
+            "VALUES (:title, :place, :date, :time, :filename)";
 
         $params = [
             "title" => $title,
-            "place" => $place
+            "place" => $place,
+            "date" => $date,
+            "time" => $time
         ];
 
         if ($filename !== '') {

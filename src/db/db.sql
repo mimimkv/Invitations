@@ -18,5 +18,7 @@ CREATE TABLE invitations(
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   title VARCHAR(100) NOT NULL UNIQUE,
   place VARCHAR(50) NOT NULL,
+  date date NOT NULL, 
+  time time NOT NULL,
   filename VARCHAR(30)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
