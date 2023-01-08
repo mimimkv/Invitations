@@ -19,35 +19,58 @@
 
   const invitations = document.getElementById("invitations");
   const result = await getInvitations();
+  console.log(result);
+  if (result["body"].length === 0) {
+    const emptyBodyMessage = document.createElement("p");
+    emptyBodyMessage.innerHTML = "No invitations yet.";
+    invitations.appendChild(emptyBodyMessage);
+    return;
+  }
 
-  result["images"].forEach((element) => {
+  result["body"].forEach((element) => {
     const div = document.createElement("div");
-
-    const image = document.createElement("img");
-    image.setAttribute("src", "data:image/jpg;base64," + element);
-
     const button = document.createElement("button");
-    button.innerHTML="Like";
+    button.innerHTML = "Like";
 
-    div.appendChild(image);
-    div.appendChild(button);
-    div.setAttribute('class', 'invitation');
+    if (element["filename"] !== "NULL") {
+      const image = document.createElement("img");
+      image.setAttribute("src", "data:image/jpg;base64," + element["filename"]);
 
-    invitations.appendChild(div);
+      div.appendChild(image);
+      div.appendChild(button);
+      div.setAttribute("class", "invitation");
+
+      invitations.appendChild(div);
+    } else {
+      const defaultInvitation = document.createElement("section");
+      defaultInvitation.setAttribute('class', 'default-invitation');
+
+      const content = document.createElement("section");
+      content.setAttribute('class', 'content');
+
+      const invitationMessage = document.createElement('h2');
+      invitationMessage.innerHTML = 'Заповядайте на презентацията на Гошо!';
+
+      const title = document.createElement("p");
+      title.innerHTML = "Title: " + element["title"];
+
+      const place = document.createElement("p");
+      place.innerHTML = "Place: " + element["place"];
+
+      content.appendChild(invitationMessage);
+      content.appendChild(title);
+      content.appendChild(place);
+      defaultInvitation.appendChild(content);
+      defaultInvitation.appendChild(button);
+
+      invitations.appendChild(defaultInvitation);
+    }
   });
-
-  /*for (const img : result['images']) {
-  const image = document.createElement("img");
-  image.setAttribute('src', "data:image/jpg;base64," + result['image']);
-  images.appendChild(image);
-  } */
 })();
 
 const loadUser = (data) => {
   if (data.success) {
-    //document.body.innerHTML += "Kak sme, ";
-    //document.body.innerHTML += data.name;
-    const logout = document.querySelector('.logout');
+    const logout = document.querySelector(".logout");
     const hello = document.createElement("h3");
     hello.innerHTML = "Hello, " + data.name;
     logout.insertBefore(hello, logout.firstChild);

@@ -2,9 +2,9 @@
 
 class InvitationDto
 {
-    private $title;
-    private $place;
-    private $filename;
+    public $title;
+    public $place;
+    public $filename;
 
     public function __construct(
         $title,

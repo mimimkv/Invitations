@@ -17,8 +17,16 @@ class InvitationController
         $place = $_POST['place'];
 
         $filename = "NULL";
-        if ($_FILES) {
-            $filename = $_SESSION['email'] . '_' . 'invitation.png';
+        /*if ($_FILES) {
+        $filename = $_SESSION['email'] . '_' . $_FILES['filename']['name'];
+        } */
+        if ($_FILES && $_FILES['filename']['name']) {
+            $filename = $_SESSION['email'] . '_' . $_FILES['filename']['name'];
+            $location = '../upload/';
+
+            $path = $location . $filename;
+
+            move_uploaded_file($_FILES['filename']['tmp_name'], $path);
         }
 
         $invitationModel = call_user_func('InvitationMapper::toModel', ['title' => $title, 'place' => $place, 'filename' => $filename]);
@@ -52,40 +60,40 @@ class InvitationController
 
     }
 
-    public function getInvitation() {
+    /*public function getInvitation()
+    {
         $image = "../upload/misho@gmail.com_tibet1.jpg";
         $imageResponse = base64_encode(file_get_contents($image));
         //echo '<img src="data:image/jpg;base64,'.base64_encode(file_get_contents($image)).'">';
         $response['image'] = $imageResponse;
         return $response;
-    }
+    } */
 
-    public function getAllInvitations() {
-        $response['images'] = [];
+    public function getAllInvitations()
+    {
+        $response = ["success" => true];
+        try {
+            $invitations = $this->invitationService->getAllInvitations();
+            $response["body"] = $invitations;
+            //echo $invitations[0]->getTitle();
+        } catch (Exception $e) {
+            $response["success"] = false;
+            $response["error"] = $e->getMessage();
+        }
 
-        $files = array_diff(scandir('../upload/'), array('.', '..'));
-        foreach($files as $x => $x_value) {
-            //echo "Key=" . $x . ", Value=" . $x_value;
-            //echo "<br>";
-            $imageResponse = base64_encode(file_get_contents('../upload/'.$x_value));
-            array_push($response['images'], $imageResponse);
-            
-          }
-
-        //echo $response['images'][0];
         return $response;
     }
 }
 
 
 /*$image = "../upload/misho@gmail.com_tibet1.jpg";
-        $imageResponse = base64_encode(file_get_contents($image));
-        echo '<img src="data:image/jpg;base64,'.base64_encode(file_get_contents($image)).'">';
-        //$response['image'] = $imageResponse;
-        //return $response; */
+$imageResponse = base64_encode(file_get_contents($image));
+echo '<img src="data:image/jpg;base64,'.base64_encode(file_get_contents($image)).'">';
+//$response['image'] = $imageResponse;
+//return $response; */
 
 
-$invitationController = new InvitationController();
-$invitationController->getAllInvitations();
+//$invitationController = new InvitationController();
+//$invitationController->getAllInvitations();
 
 ?>

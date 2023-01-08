@@ -10,14 +10,14 @@ if (!$_SESSION['email']) {
 }
 
 
-if ($_FILES && $_FILES['filename']['name']) {
+/*if ($_FILES && $_FILES['filename']['name']) {
     $filename = $_SESSION['email'] . '_' . $_FILES['filename']['name'];
     $location = '../upload/';
 
     $path = $location . $filename;
 
     move_uploaded_file($_FILES['filename']['tmp_name'], $path);
-}
+} */
 
 $invitationController = new InvitationController();
 echo json_encode($invitationController->createInvitation());

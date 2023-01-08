@@ -1,6 +1,7 @@
 <?php
 require_once '../database/config.php';
 require_once '../mappers/user-mapper.php';
+require_once '../mappers/invitation-mapper.php';
 
 class InvitationRepository
 {
@@ -36,6 +37,13 @@ class InvitationRepository
 
         $invitation = $this->db->executeQuery($query, $params)->fetch();
         return $invitation;
+    }
+
+    public function getAllInvitations() {
+        $query = "SELECT * FROM invitations";
+        $rows = $this->db->executeQuery($query)->fetchAll();
+
+        return array_map(array('InvitationMapper', 'toModel'), $rows);
     }
 }
 

@@ -47,13 +47,13 @@ nav ul li a {
 }
 
 .loading-indicator {
-    width: 200px;
-    padding: auto;
-    margin: 150px auto;
+  width: 200px;
+  padding: auto;
+  margin: 150px auto;
 }
 
 .hide {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 #invitations {
@@ -69,6 +69,10 @@ nav ul li a {
   border-radius: 25px;
 }
 
+#invitations p {
+  font-size: 24px;
+}
+
 #invitations .invitation {
   display: flex;
   flex-direction: column;
@@ -82,7 +86,7 @@ nav ul li a {
   border-bottom: 2px solid blue;
 }
 
-#invitations .invitation button {
+#invitations button {
   font-size: 20px;
   padding: 5px 20px;
   background-color: rgb(106, 106, 241);
@@ -91,45 +95,71 @@ nav ul li a {
 }
 
 #invitations img {
-    width: 600px;
-    height: 500px;
-    border: 2px solid #3aaf9f;
+  width: 600px;
+  height: 500px;
+  border: 2px solid #3aaf9f;
+}
+
+#invitations .default-invitation {
+  width: 600px;
+  height: 300px;
+  border: 5px solid #3aaf9f;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+#invitations .default-invitation .content {
+  background-color: aqua;
+  width: 100%;
+}
+
+#invitations .default-invitation h2 {
+  padding-left: 10px;
+  font-style: italic;
+}
+
+#invitations .default-invitation p {
+  font-size: 24px;
+  padding-left: 10px;
 }
 
 .lds-facebook {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #3aaf9f;
+  animation: lds-facebook 0.8s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
   }
-  .lds-facebook div {
-    display: inline-block;
-    position: absolute;
-    left: 8px;
-    width: 16px;
-    background: #3aaf9f;
-    animation: lds-facebook 0.8s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  50%,
+  100% {
+    top: 24px;
+    height: 32px;
   }
-  .lds-facebook div:nth-child(1) {
-    left: 8px;
-    animation-delay: -0.24s;
-  }
-  .lds-facebook div:nth-child(2) {
-    left: 32px;
-    animation-delay: -0.12s;
-  }
-  .lds-facebook div:nth-child(3) {
-    left: 56px;
-    animation-delay: 0;
-  }
-  @keyframes lds-facebook {
-    0% {
-      top: 8px;
-      height: 64px;
-    }
-    50%, 100% {
-      top: 24px;
-      height: 32px;
-    }
-  }
-  
+}
