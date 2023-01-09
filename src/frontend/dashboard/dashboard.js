@@ -43,13 +43,18 @@
       invitations.appendChild(div);
     } else {
       const defaultInvitation = document.createElement("section");
-      defaultInvitation.setAttribute('class', 'default-invitation');
+      defaultInvitation.setAttribute("class", "default-invitation");
 
       const content = document.createElement("section");
-      content.setAttribute('class', 'content');
+      content.setAttribute("class", "content");
 
-      const invitationMessage = document.createElement('h2');
-      invitationMessage.innerHTML = 'Заповядайте на презентацията на Гошо!';
+      const invitationMessage = document.createElement("h2");
+      invitationMessage.innerHTML =
+        "Заповядайте на презентацията на " +
+        element["presenter"]["firstName"] +
+        " " +
+        element["presenter"]["lastName"] +
+        "!";
 
       const title = document.createElement("p");
       title.innerHTML = "Title: " + element["title"];

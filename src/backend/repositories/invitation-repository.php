@@ -12,14 +12,15 @@ class InvitationRepository
         $this->db = new Database();
     }
 
-    public function createInvitation($title, $place, $filename)
+    public function createInvitation($title, $place, $presenter_fn, $filename)
     {
-        $query = "INSERT INTO invitations(title, place, filename)\n" .
-            "VALUES (:title, :place, :filename)";
+        $query = "INSERT INTO invitations(title, place, presenter_fn, filename)\n" .
+            "VALUES (:title, :place, :presenter_fn, :filename)";
 
         $params = [
             "title" => $title,
-            "place" => $place
+            "place" => $place,
+            "presenter_fn" => $presenter_fn
         ];
 
         if ($filename !== '') {
@@ -31,7 +32,8 @@ class InvitationRepository
         return $this->db->executeQuery($query, $params);
     }
 
-    public function findInvitationByTitle($title) {
+    public function findInvitationByTitle($title)
+    {
         $query = "SELECT * FROM invitations WHERE title=:title";
         $params = ["title" => $title];
 
@@ -39,8 +41,9 @@ class InvitationRepository
         return $invitation;
     }
 
-    public function getAllInvitations() {
-        $query = "SELECT * FROM invitations";
+    public function getAllInvitations()
+    {
+        $query = "SELECT * FROM invitations INNER JOIN users ON fn = presenter_fn";
         $rows = $this->db->executeQuery($query)->fetchAll();
 
         return array_map(array('InvitationMapper', 'toModel'), $rows);

@@ -15,6 +15,8 @@ class InvitationController
     {
         $title = $_POST['title'];
         $place = $_POST['place'];
+        $presenter_fn = $_SESSION['fn'];
+        //$presenter_fn = 333890;
 
         $filename = "NULL";
         /*if ($_FILES) {
@@ -22,6 +24,7 @@ class InvitationController
         } */
         if ($_FILES && $_FILES['filename']['name']) {
             $filename = $_SESSION['email'] . '_' . $_FILES['filename']['name'];
+            //$filename = '_' . $_FILES['filename']['name'];
             $location = '../upload/';
 
             $path = $location . $filename;
@@ -29,13 +32,19 @@ class InvitationController
             move_uploaded_file($_FILES['filename']['tmp_name'], $path);
         }
 
-        $invitationModel = call_user_func('InvitationMapper::toModel', ['title' => $title, 'place' => $place, 'filename' => $filename]);
+        //$invitationModel = call_user_func('InvitationMapper::toModel', ['title' => $title, 'place' => $place, 'presenter_fn' => $presenter_fn, 'filename' => $filename]);
+        $input = ['title' => $title, 'place' => $place, 'presenter_fn' => $presenter_fn, 'filename' => $filename];
         $response = ["success" => true];
         try {
             $this->invitationService->createInvitation(
-                $invitationModel->getTitle(),
+                /*$invitationModel->getTitle(),
                 $invitationModel->getPlace(),
-                $invitationModel->getFilename()
+                $invitationModel->getPresenterFn(),
+                $invitationModel->getFilename() */
+                $input["title"],
+                $input["place"],
+                $input["presenter_fn"],
+                $input["filename"]
             );
         } catch (InvalidArgumentException $e) {
             $response["success"] = false;

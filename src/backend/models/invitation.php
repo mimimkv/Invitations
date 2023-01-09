@@ -6,16 +6,19 @@ class InvitationModel
     private $title;
     private $place;
 
+    private $presenter;
     private $filename;
 
     public function __construct(
         $title,
         $place,
+        $presenter,
         $filename=''
     )
     {
         $this->title = $title;
         $this->place = $place;
+        $this->presenter = $presenter;
         $this->filename = $filename;
     }
 
@@ -32,6 +35,10 @@ class InvitationModel
     public function getPlace()
     {
         return $this->place;
+    }
+
+    public function getPresenter() {
+        return $this->presenter;
     }
 
     public function getFilename() {

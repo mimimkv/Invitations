@@ -6,14 +6,18 @@ class InvitationDto
     public $place;
     public $filename;
 
+    public $presenter;
+
     public function __construct(
         $title,
         $place,
+        $presenter,
         $filename
     )
     {
         $this->title = $title;
         $this->place = $place;
+        $this->presenter = $presenter;
         $this->filename = $filename;
     }
 
@@ -25,6 +29,10 @@ class InvitationDto
     public function getPlace()
     {
         return $this->place;
+    }
+
+    public function getPresener() {
+        return $this->presenter;
     }
 
     public function getFilename() {
