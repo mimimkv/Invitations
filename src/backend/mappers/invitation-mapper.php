@@ -12,6 +12,7 @@ class InvitationMapper
             $data["place"],
             $data["date"],
             $data["time"],
+            $data["end_time"],
             $data["filename"]
         );
     }
@@ -23,6 +24,7 @@ class InvitationMapper
             $invitation->getPlace(),
             $invitation->getDate(),
             $invitation->getTime(),
+            $invitation->getEndTime(),
             $invitation->getFilename()
         );
     }

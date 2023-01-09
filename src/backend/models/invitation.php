@@ -7,6 +7,7 @@ class InvitationModel
     private $place;
     private $date;
     private $time;
+    private $endTime;
 
     private $filename;
 
@@ -15,6 +16,7 @@ class InvitationModel
         $place,
         $date,
         $time,
+        $endTime,
         $filename=''
     )
     {
@@ -22,6 +24,7 @@ class InvitationModel
         $this->place = $place;
         $this->date = $date;
         $this->time = $time;
+        $this->endTime = $endTime;
         $this->filename = $filename;
     }
 
@@ -50,6 +53,10 @@ class InvitationModel
 
     public function getTime() {
         return $this->time;
+    }
+
+    public function getEndTime() {
+        return $this->endTime;
     }
 }
 ?>

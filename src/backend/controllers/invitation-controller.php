@@ -18,10 +18,15 @@ class InvitationController
         $date = $_POST['date'];
         $time = $_POST['time'];
 
+        $endTime = date('H:i:s', strtotime($time. ' +10 minutes'));
+        //echo $endTime;
+        
+
         $invitationModel = call_user_func('InvitationMapper::toModel', ['title' => $title, 
                                                                         'place' => $place, 
                                                                         'date' => $date,
                                                                         'time' => $time,
+                                                                        'end_time' => $endTime,
                                                                         'filename' => 'test.png']);
         $response = ["success" => true];
         try {
@@ -30,6 +35,7 @@ class InvitationController
                 $invitationModel->getPlace(),
                 $invitationModel->getDate(),
                 $invitationModel->getTime(),
+                $invitationModel->getEndTime(),
                 $invitationModel->getFilename()
             );
         } catch (InvalidArgumentException $e) {
