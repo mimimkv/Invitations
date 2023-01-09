@@ -41,7 +41,8 @@ class UserService
             throw new InvalidArgumentException("User with email $email does not exist.");
         }
 
-        if ($user["password"] !== $password) {
+        // if ($user["password"] !== $password) {
+        if (!password_verify($password, $user["password"])) {
             throw new InvalidArgumentException("Invalid password");
         }
 
