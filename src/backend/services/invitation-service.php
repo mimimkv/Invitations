@@ -10,12 +10,17 @@ class InvitationService {
         $this->invitationRepository = new InvitationRepository();
     }
 
-    public function createInvitation($title, $place, $filename) {
+    public function createInvitation($title, $place, $date, $time, $endTime, $filename) {
         if ($this->invitationRepository->findInvitationByTitle($title)) {
             throw new InvalidArgumentException("Invitation with this title already exists");
         }
 
-        $result = $this->invitationRepository->createInvitation($title, $place, $filename);
+        if ($this->invitationRepository->findInvitationByDateAndTime($date, $time)) {
+            throw new InvalidArgumentException("This time slot is already taken. Choose another one.");
+        }
+
+        $result = $this->invitationRepository->createInvitation($title, $place, $date, $time, $endTime, $filename);
+
         return $result;
     }
 }

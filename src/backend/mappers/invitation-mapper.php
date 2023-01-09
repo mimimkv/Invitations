@@ -10,6 +10,9 @@ class InvitationMapper
         return new InvitationModel(
             $data["title"],
             $data["place"],
+            $data["date"],
+            $data["time"],
+            $data["end_time"],
             $data["filename"]
         );
     }
@@ -19,6 +22,9 @@ class InvitationMapper
         return new InvitationDto(
             $invitation->getTitle(),
             $invitation->getPlace(),
+            $invitation->getDate(),
+            $invitation->getTime(),
+            $invitation->getEndTime(),
             $invitation->getFilename()
         );
     }
