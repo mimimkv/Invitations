@@ -17,6 +17,7 @@
     loadUser(user)
       .then(() => {
         window.location.replace("../dashboard/dashboard.html");
+        localStorage.setItem("isLoggedIn", true);
       }).catch((error) => {
         formError.classList.add("error");
         formError.classList.remove("hide");

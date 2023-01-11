@@ -54,7 +54,8 @@ class UserController
 
         if (isset($user)) {
             $_SESSION["email"] = $email;
-            $_SESSION["name"] = $user['first_name'];
+            $_SESSION["name"] = $user["first_name"];
+            $_SESSION["fn"] = $user["fn"];
         }
         
         // echo $user['first_name'];

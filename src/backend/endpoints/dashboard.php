@@ -1,5 +1,8 @@
 <?php
 
+    //left on purpose to demonstrate the loading indicator in the frontend
+    //sleep(1);
+
 
     session_start();
     // header("Content-type: application/json");
