@@ -14,10 +14,12 @@ class UserController
     public function register()
     {
         $userModel = call_user_func('UserMapper::toModel', json_decode(file_get_contents('php://input'), true));
+        $passwordHash = password_hash($userModel->getPassword(), PASSWORD_DEFAULT);
         $response = ["success" => true];
+
         try {
             $this->userService->addUser(
-                $userModel->getFn(), $userModel->getEmail(), $userModel->getPassword(), $userModel->getFirstName(),
+                $userModel->getFn(), $userModel->getEmail(), $passwordHash, $userModel->getFirstName(),
                 $userModel->getLastName(), $userModel->getCourse(), $userModel->getSpecialty()
             );
         } catch (InvalidArgumentException $e) {
