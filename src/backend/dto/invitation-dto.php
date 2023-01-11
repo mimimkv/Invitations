@@ -4,6 +4,13 @@ class InvitationDto
 {
     public $title;
     public $place;
+
+    public $date;
+
+    public $time;
+
+    public $endTime;
+    
     public $filename;
 
     public $presenter;
@@ -11,12 +18,18 @@ class InvitationDto
     public function __construct(
         $title,
         $place,
+        $date,
+        $time,
+        $endTime,
         $presenter,
         $filename
     )
     {
         $this->title = $title;
         $this->place = $place;
+        $this->date = $date;
+        $this->time = $time;
+        $this->endTime = $endTime;
         $this->presenter = $presenter;
         $this->filename = $filename;
     }
@@ -37,6 +50,18 @@ class InvitationDto
 
     public function getFilename() {
         return $this->filename;
+    }
+
+    public function getDate() {
+        return $this->date;
+    }
+
+    public function getTime() {
+        return $this->time;
+    }
+
+    public function getEndTime() {
+        return $this->endTime;
     }
 }
 ?>

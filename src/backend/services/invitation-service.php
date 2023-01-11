@@ -3,30 +3,39 @@
 require_once '../repositories/invitation-repository.php';
 require_once '../mappers/invitation-mapper.php';
 
-class InvitationService {
+class InvitationService
+{
     private $invitationRepository;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->invitationRepository = new InvitationRepository();
     }
 
-    public function createInvitation($title, $place, $presenter_fn, $filename) {
+    public function createInvitation($title, $place, $date, $time, $endTime, $presenter_fn, $filename)
+    {
         if ($this->invitationRepository->findInvitationByTitle($title)) {
             throw new InvalidArgumentException("Invitation with this title already exists");
         }
 
-        $result = $this->invitationRepository->createInvitation($title, $place, $presenter_fn, $filename);
+        if ($this->invitationRepository->findInvitationByDateAndTime($date, $time)) {
+            throw new InvalidArgumentException("This time slot is already taken. Choose another one.");
+        }
+
+        $result = $this->invitationRepository->createInvitation($title, $place, $date, $time, $endTime, $presenter_fn, $filename);
+
         return $result;
     }
 
-    public function getAllInvitations() {
+    public function getAllInvitations()
+    {
         $invitations = $this->invitationRepository->getAllInvitations();
         foreach ($invitations as $i) {
             $filename = $i->getFilename();
             if ($filename !== null && $filename !== 'NULL') {
-                $encodedName = base64_encode(file_get_contents('../upload/'.$i->getFilename()));
+                $encodedName = base64_encode(file_get_contents('../upload/' . $i->getFilename()));
                 $i->setFilename($encodedName);
-            } else if($filename === null){
+            } else if ($filename === null) {
                 $i->setFilename('NULL');
             }
 

@@ -16,12 +16,12 @@ class InvitationController
         $title = $_POST['title'];
         $place = $_POST['place'];
         $presenter_fn = $_SESSION['fn'];
-        //$presenter_fn = 333890;
+        $date = $_POST['date'];
+        $time = $_POST['time'];
+
+        $endTime = date('H:i:s', strtotime($time. ' +10 minutes'));
 
         $filename = "NULL";
-        /*if ($_FILES) {
-        $filename = $_SESSION['email'] . '_' . $_FILES['filename']['name'];
-        } */
         if ($_FILES && $_FILES['filename']['name']) {
             $filename = $_SESSION['email'] . '_' . $_FILES['filename']['name'];
             //$filename = '_' . $_FILES['filename']['name'];
@@ -32,17 +32,16 @@ class InvitationController
             move_uploaded_file($_FILES['filename']['tmp_name'], $path);
         }
 
-        //$invitationModel = call_user_func('InvitationMapper::toModel', ['title' => $title, 'place' => $place, 'presenter_fn' => $presenter_fn, 'filename' => $filename]);
-        $input = ['title' => $title, 'place' => $place, 'presenter_fn' => $presenter_fn, 'filename' => $filename];
+        $input = ['title' => $title, 'place' => $place, 'date' => $date, 'time' => $time, 'end_time'=> $endTime, 'presenter_fn' => $presenter_fn, 'filename' => $filename];
+
         $response = ["success" => true];
         try {
             $this->invitationService->createInvitation(
-                /*$invitationModel->getTitle(),
-                $invitationModel->getPlace(),
-                $invitationModel->getPresenterFn(),
-                $invitationModel->getFilename() */
                 $input["title"],
                 $input["place"],
+                $input["date"],
+                $input["time"],
+                $input["end_time"],
                 $input["presenter_fn"],
                 $input["filename"]
             );

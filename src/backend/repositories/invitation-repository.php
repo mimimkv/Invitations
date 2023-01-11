@@ -12,15 +12,18 @@ class InvitationRepository
         $this->db = new Database();
     }
 
-    public function createInvitation($title, $place, $presenter_fn, $filename)
+    public function createInvitation($title, $place, $date, $time, $endTime, $presenter_fn, $filename)
     {
-        $query = "INSERT INTO invitations(title, place, presenter_fn, filename)\n" .
-            "VALUES (:title, :place, :presenter_fn, :filename)";
+        $query = "INSERT INTO invitations(title, place, date, time, end_time, presenter_fn, filename)\n" .
+            "VALUES (:title, :place, :date, :time, :end_time, :presenter_fn, :filename)";
 
         $params = [
             "title" => $title,
             "place" => $place,
-            "presenter_fn" => $presenter_fn
+            "date" => $date,
+            "time" => $time,
+            "end_time" => $endTime,
+            "presenter_fn" => $presenter_fn,
         ];
 
         if ($filename !== '') {
@@ -47,6 +50,14 @@ class InvitationRepository
         $rows = $this->db->executeQuery($query)->fetchAll();
 
         return array_map(array('InvitationMapper', 'toModel'), $rows);
+    }
+    public function findInvitationByDateAndTime($date, $time)
+    {
+        $query = "SELECT * FROM invitations WHERE date=:date AND :time>=time AND :time<end_time";
+        $params = ["date" => $date, "time" => $time];
+
+        $invitation = $this->db->executeQuery($query, $params)->fetch();
+        return $invitation;
     }
 }
 

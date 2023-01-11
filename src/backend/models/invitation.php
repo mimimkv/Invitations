@@ -5,6 +5,9 @@ class InvitationModel
     private $id;
     private $title;
     private $place;
+    private $date;
+    private $time;
+    private $endTime;
 
     private $presenter;
     private $filename;
@@ -12,12 +15,18 @@ class InvitationModel
     public function __construct(
         $title,
         $place,
+        $date,
+        $time,
+        $endTime,
         $presenter,
-        $filename=''
+        $filename = ''
     )
     {
         $this->title = $title;
         $this->place = $place;
+        $this->date = $date;
+        $this->time = $time;
+        $this->endTime = $endTime;
         $this->presenter = $presenter;
         $this->filename = $filename;
     }
@@ -37,16 +46,33 @@ class InvitationModel
         return $this->place;
     }
 
-    public function getPresenter() {
+    public function getPresenter()
+    {
         return $this->presenter;
     }
 
-    public function getFilename() {
+    public function getFilename()
+    {
         return $this->filename;
     }
 
-    public function setFilename($filename) {
+    public function setFilename($filename)
+    {
         $this->filename = $filename;
+    }
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    public function getTime()
+    {
+        return $this->time;
+    }
+
+    public function getEndTime()
+    {
+        return $this->endTime;
     }
 }
 ?>

@@ -12,8 +12,11 @@ class InvitationMapper
         return new InvitationModel(
             $data["title"],
             $data["place"],
+            $data["date"],
+            $data["time"],
+            $data["end_time"],
             new UserModel($data["presenter_fn"], $data["email"], $data["password"], $data["first_name"], $data["last_name"], $data["course"], $data["specialty"]),
-            $data["filename"],
+            $data["filename"]
         );
     }
 
@@ -22,6 +25,9 @@ class InvitationMapper
         return new InvitationDto(
             $invitation->getTitle(),
             $invitation->getPlace(),
+            $invitation->getDate(),
+            $invitation->getTime(),
+            $invitation->getEndTime(),
             UserMapper::toDto($invitation->getPresenter()),
             $invitation->getFilename()
         );
