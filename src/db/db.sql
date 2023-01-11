@@ -22,5 +22,6 @@ CREATE TABLE invitations(
   time time NOT NULL,
   end_time time NOT NULL,
   filename VARCHAR(30),
+  presenter_fn INT REFERENCES users(fn) ON DELETE SET NULL,
   UNIQUE KEY unique_time(date, time)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
