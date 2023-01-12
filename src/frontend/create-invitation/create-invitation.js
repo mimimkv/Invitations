@@ -1,4 +1,16 @@
 (() => {
+
+  const logoutButton = document.querySelector(".logout");
+  logoutButton.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const url = "../../backend/endpoints/logout.php";
+    const settings = { method: "GET" };
+
+    fetch(url, settings).then(window.location.replace("../login/login.html"));
+    localStorage.setItem("isLoggedIn", false);
+  });
+
   const form = document.querySelector(".create-invitation");
   const inputs = document.querySelectorAll(".input");
   const formError = document.getElementById("form-error");
