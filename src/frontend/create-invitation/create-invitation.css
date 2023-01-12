@@ -1,5 +1,23 @@
+body[data-theme="light"] {
+  --color-1: white;
+  --color-2: black;
+  --color-3: #3aaf9f;
+  --color-4: #eee;   /* input field background */
+  --color-5: cornflowerblue; /*used for navbar*/
+}
+
+body[data-theme="dark"] {
+  --color-1: #bb86fc;
+  --color-2: white;
+  --color-3: black;
+  --color-4: rgb(214, 211, 211);
+  --color-5: #bb86fc; 
+}
+
 body {
-    background-color: #3aaf9f;
+  background-color: var(--color-3);
+  margin: 0;
+  padding: 0;
 }
 
 .create-invitation {
@@ -9,12 +27,12 @@ body {
   margin: 70px auto;
   align-items: center;
   border-radius: 35px;
-  background-color: white;
+  background-color: var(--color-1);
   padding-bottom: 60px;
 }
 
 .create-invitation h1 {
-    color: #3aaf9f;
+    color: var(--color-3);
     font-size: 36px;
   }
 
@@ -28,7 +46,7 @@ form input {
   margin-top: 10px;
   font-size: 18px;
   padding: 10px;
-  background-color: #eeeeee;
+  background-color: var(--color-4);
   color: black;
   font-weight: 500;
   border: none;
@@ -40,8 +58,8 @@ form button {
   margin: 20px auto 0;
   border-radius: 25px;
   padding: 7px;
-  color: white;
-  background-color: #3aaf9f;
+  color: var(--color-1);
+  background-color: var(--color-3);
   border: none;
 }
 
@@ -57,8 +75,8 @@ form button {
 
 form button:hover {
   background-color: white;
-  color: #3aaf9f;
-  border: 2px solid #3aaf9f;
+  color: var(--color-3);
+  border: 2px solid var(--color-3);
 }
 
 ::-webkit-input-placeholder {
@@ -73,3 +91,111 @@ form button:hover {
   /* IE 10+ */
   color: #1d2120;
 }
+
+.theme-switcher {
+  position: absolute;
+  right: 110px;
+  top: 15px; 
+}
+
+
+.theme-switcher input {
+  width: 0;
+  height: 0;
+  display: none;
+  visibility: hidden;
+}
+
+.theme-switcher label {
+  cursor: pointer;
+  display: block;
+  text-indent: -9999px;
+  height: 30px;
+  width: 60px;
+  border-radius: 50px;
+  background-color: rgb(255, 255, 255);
+  transition: 0.5s ease background-color;
+  /* border: 2px solid red; */
+}
+
+.theme-switcher label::after {
+  position: absolute;
+  /* border: 2px solid blue; */
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  background-color: rgb(46, 42, 68);
+  transition: 0.5s ease;
+}
+
+.theme-switcher input:checked + label::after {
+  left: calc(100% - 25px);
+  background-color: aliceblue;
+}
+
+.theme-switcher input:checked + label {
+  background-color: rgb(25, 26, 37);
+  border: 2px solid whitesmoke;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-5);
+  align-items: center;
+  padding: 0 10px 15px 0;
+}
+
+nav ul {
+  list-style: none;
+  width: 30%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-size: 24px;
+  color: white;
+}
+
+.logout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-right: 30px;
+}
+
+.logout h3 {
+  font-size: 24px;
+  color: white;
+  margin: 0;
+  margin-bottom: 5px;
+  padding: 0;
+}
+
+.logout button {
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+/* .buttons {
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  height: 150px;
+  gap: 5px;
+  display: inline;
+
+} */
+
+/* .theme-switcher {
+  border: 2px solid blue;
+} */

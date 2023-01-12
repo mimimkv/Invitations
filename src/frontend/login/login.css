@@ -1,15 +1,19 @@
-body {
-    background-color: #3aaf9f;
-}
-
 body[data-theme="light"] {
   --color-1: white;
   --color-2: black;
+  --color-3: #3aaf9f;
+  --color-4: #eee;   /* input field background */
 }
 
 body[data-theme="dark"] {
-  --color-1: black;
+  --color-1: #bb86fc;
   --color-2: white;
+  --color-3: black;
+  --color-4: rgb(214, 211, 211);
+}
+
+body {
+  background-color: var(--color-3);
 }
 
 .login {
@@ -26,7 +30,7 @@ body[data-theme="dark"] {
 }
 
 .login h1 {
-  color: #3aaf9f;
+  color: var(--color-3);
   font-size: 34px;
 }
 
@@ -41,7 +45,7 @@ body[data-theme="dark"] {
   margin-top: 10px;
   font-size: 18px;
   padding: 10px;
-  background-color: #eeeeee;
+  background-color: var(--color-4);
   color: black;
   font-weight: 500;
   border: none;
@@ -55,14 +59,14 @@ body[data-theme="dark"] {
   padding: 7px;
   /* color: white; */
   color: var(--color-1);
-  background-color: #3aaf9f;
+  background-color: var(--color-3);
   border: none;
 }
 
 .login form button:hover {
   background-color: white;
-  color: #3aaf9f;
-  border: 2px solid #3aaf9f;
+  color: var(--color-3);
+  border: 2px solid var(--color-3);
 }
 
 .login .registration {
@@ -72,7 +76,7 @@ body[data-theme="dark"] {
 }
 
 .login .registration a {
-  color: #3aaf9f;
+  color: var(--color-3);
 }
 
 ::-webkit-input-placeholder {
