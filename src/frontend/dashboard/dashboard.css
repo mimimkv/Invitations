@@ -74,6 +74,18 @@ nav ul li a {
   font-size: 24px;
 }
 
+#invitations .likes-section p {
+  font-size: 18px;
+  font-style: italic;
+}
+
+#invitations .likes-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
 #invitations .invitation,
 .default-invitation {
   display: flex;
@@ -83,13 +95,12 @@ nav ul li a {
   border: 2px solid blueviolet;
   background-color: white;
   border-radius: 25px;
-  padding: 70px;
+  padding: 20px 50px;
 }
 
 #invitations .invitation:not(:last-child) {
   margin-bottom: 100px;
   padding-bottom: 50px;
-  /*border-bottom: 2px solid blue; */
 }
 
 #invitations button {
@@ -101,9 +112,6 @@ nav ul li a {
 }
 
 #invitations button:disabled {
-  /*background: #fff;
-  border-color: rgb(124, 124, 147); 
-  background-color: dimgrey; */
   cursor: no-drop;
   color: #ccc;
   opacity: 0.4;
@@ -120,7 +128,7 @@ nav ul li a {
 }
 
 #invitations .default-invitation .content {
-  background-color: aqua;
+  background-color: beige;
   width: 100%;
 }
 

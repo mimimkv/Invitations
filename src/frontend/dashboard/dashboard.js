@@ -53,12 +53,32 @@
     });
     button.innerHTML = "Like";
 
+    const allLikesCount = await getAllLikesForInvitation(element["id"]);
+    const all = document.createElement("p");
+    all.setAttribute("class", "all-likes");
+    if (allLikesCount === 0) {
+      all.classList.add("hide");
+    } else {
+      all.classList.remove("hide");
+
+      if (allLikesCount === 1) {
+        all.innerHTML = "1 user liked this";
+      } else {
+        all.innerHTML = allLikesCount + " users liked this";
+      }
+    }
+
+    const likesSection = document.createElement("section");
+    likesSection.setAttribute("class", "likes-section");
+    likesSection.appendChild(button);
+    likesSection.appendChild(all);
+
     if (element["filename"] !== "NULL") {
       const image = document.createElement("img");
       image.setAttribute("src", "data:image/jpg;base64," + element["filename"]);
 
       div.appendChild(image);
-      div.appendChild(button);
+      div.appendChild(likesSection);
       div.setAttribute("class", "invitation");
       div.appendChild(likeMessage);
 
@@ -92,12 +112,20 @@
       const place = document.createElement("p");
       place.innerHTML = "Place: " + element["place"];
 
+      const start = document.createElement("p");
+      start.innerHTML = "Start: " + element["date"] + "   " + element["time"];
+
+      const end = document.createElement("p");
+      end.innerHTML = "End: " + element["date"] + "   " + element["endTime"];
+
       content.appendChild(invitationMessage);
       content.appendChild(title);
       content.appendChild(place);
+      content.appendChild(start);
+      content.appendChild(end);
 
       defaultInvitation.appendChild(content);
-      defaultInvitation.appendChild(button);
+      defaultInvitation.appendChild(likesSection);
       defaultInvitation.appendChild(likeMessage);
 
       invitations.appendChild(defaultInvitation);
@@ -152,13 +180,11 @@ async function createLike(invitationId) {
 
 async function isLikedByCurrentUser(currentUser, invitationId) {
   const response = await getAllLikes();
-  console.log(response);
   const allLikes = response["body"];
   for (let i = 0; i < allLikes.length; i++) {
-    console.log("here");
     if (
       allLikes[i]["invitation"]["id"] === invitationId &&
-      allLikes[i]["invitation"]["presenter"] === currentUser
+      allLikes[i]["user"]["fn"] === currentUser
     ) {
       return true;
     }
@@ -179,4 +205,17 @@ async function getAllLikes() {
   return await fetch(url, settings)
     .then((response) => response.json())
     .catch((error) => console.log(error));
+}
+
+async function getAllLikesForInvitation(invitationId) {
+  const response = await getAllLikes();
+  const allLikes = response["body"];
+  let counter = 0;
+  for (let i = 0; i < allLikes.length; i++) {
+    if (allLikes[i]["invitation"]["id"] === invitationId) {
+      counter++;
+    }
+  }
+
+  return counter;
 }
