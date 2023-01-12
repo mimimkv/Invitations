@@ -22,9 +22,7 @@ body {
   width: 500px;
   margin: 150px auto;
   align-items: center;
-  /*border: 2px solid red; */
   border-radius: 35px;
-  /* background-color: white; */
   background-color: var(--color-1);
   padding-bottom: 60px;
 }
@@ -38,7 +36,6 @@ body {
   display: flex;
   flex-direction: column;
   width: 80%;
-  /*border: 2px solid green; */
 }
 
 .login form input {
@@ -57,7 +54,6 @@ body {
   margin: 20px auto 0;
   border-radius: 25px;
   padding: 7px;
-  /* color: white; */
   color: var(--color-1);
   background-color: var(--color-3);
   border: none;
