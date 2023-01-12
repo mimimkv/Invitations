@@ -59,6 +59,21 @@ class InvitationRepository
         $invitation = $this->db->executeQuery($query, $params)->fetch();
         return $invitation;
     }
+
+    public function findInvitationByPresenter($presenter_fn) {
+        $query = "SELECT * FROM invitations WHERE presenter_fn=:presenter_fn";
+        $params = ["presenter_fn" => $presenter_fn];
+
+        $invitation = $this->db->executeQuery($query, $params)->fetch();
+        return $invitation;
+    }
+
+    public function deleteInvitationByPresenter($presenter_fn) {
+        $query = "DELETE FROM invitations WHERE presenter_fn=:presenter_fn";
+        $params = ["presenter_fn" => $presenter_fn];
+
+        return $this->db->executeQuery($query, $params);
+    }
 }
 
 ?>

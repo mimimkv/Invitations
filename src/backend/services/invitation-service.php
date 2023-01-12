@@ -22,6 +22,10 @@ class InvitationService
             throw new InvalidArgumentException("This time slot is already taken. Choose another one.");
         }
 
+        if ($this->invitationRepository->findInvitationByPresenter($presenter_fn)) {
+            $this->invitationRepository->deleteInvitationByPresenter($presenter_fn);
+        }
+
         $result = $this->invitationRepository->createInvitation($title, $place, $date, $time, $endTime, $presenter_fn, $filename);
 
         return $result;
