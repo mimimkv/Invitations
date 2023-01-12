@@ -13,6 +13,7 @@ class InvitationModel
     private $filename;
 
     public function __construct(
+        $id,
         $title,
         $place,
         $date,
@@ -22,6 +23,7 @@ class InvitationModel
         $filename = ''
     )
     {
+        $this->id = $id;
         $this->title = $title;
         $this->place = $place;
         $this->date = $date;
