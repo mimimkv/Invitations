@@ -5,6 +5,8 @@ body[data-theme="light"] {
   --color-4: #eee;   /* input field background */
   --color-5: cornflowerblue; /*used for navbar*/
   --color-6: blueviolet;
+  --color-7: beige;
+  --color-8: rgb(106, 106, 241);
 }
 
 body[data-theme="dark"] {
@@ -14,6 +16,8 @@ body[data-theme="dark"] {
   --color-4: rgb(214, 211, 211);
   --color-5: #bb86fc; 
   --color-6: black;
+  --color-7: rgb(114, 147, 154);
+  --color-8: rgb(54, 54, 119);
 }
 
 body {
@@ -120,15 +124,16 @@ nav ul li a {
   padding: 20px 50px;
 }
 
+/*
 #invitations .invitation:not(:last-child) {
   margin-bottom: 100px;
   padding-bottom: 50px;
-}
+}*/
 
 #invitations button {
   font-size: 20px;
   padding: 5px 20px;
-  background-color: rgb(106, 106, 241);
+  background-color: var(--color-8);
   color: white;
   border: 1px solid blueviolet;
 }
@@ -150,7 +155,7 @@ nav ul li a {
 }
 
 #invitations .default-invitation .content {
-  background-color: beige;
+  background-color: var(--color-7);
   width: 100%;
 }
 
