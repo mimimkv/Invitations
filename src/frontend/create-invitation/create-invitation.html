@@ -13,7 +13,19 @@
         }
     </script>
   </head>
-  <body>
+  <body data-theme="light">
+
+    <nav>
+      <ul>
+          <li><a href="../dashboard/dashboard.html">Upcomming invitations</a></li>
+          <li><a href="../dashboard/dashboard.html">All invitations</a></li>
+      </ul>
+
+      <section class="logout">
+            <button name="logout-button">Logout</button> 
+      </section>
+    </nav>
+
     <section class="create-invitation">
       <h1>Create Invitation</h1>
 
@@ -55,6 +67,12 @@
       </form>
 
       <section class="hide" id="form-error"></section>
+
+      <section class="theme-switcher">
+        <input type="checkbox" id="switcher">
+        <label for=switcher>switch</label>
+      </section>
+
     </section>
   </body>
 </html>
