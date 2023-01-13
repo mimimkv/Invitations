@@ -83,7 +83,6 @@ class InvitationController
         try {
             $invitations = $this->invitationService->getAllInvitations();
             $response["body"] = $invitations;
-            //echo $invitations[0]->getTitle();
         } catch (Exception $e) {
             $response["success"] = false;
             $response["error"] = $e->getMessage();
@@ -91,6 +90,20 @@ class InvitationController
 
         return $response;
     }
+
+    public function getUpcomingInvitations() {
+        $response = ["success" => true];
+        try {
+            $invitations = $this->invitationService->getUpcomingInvitations();
+            $response["body"] = $invitations;
+        } catch (Exception $e) {
+            $response["success"] = false;
+            $response["error"] = $e->getMessage();
+        }
+
+        return $response;
+    }
+
 }
 
 
