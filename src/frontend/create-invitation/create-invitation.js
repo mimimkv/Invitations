@@ -1,4 +1,6 @@
 (() => {
+  setPossibleDates();
+
   const form = document.querySelector(".create-invitation");
   const inputs = document.querySelectorAll(".input");
   const formError = document.getElementById("form-error");
@@ -56,4 +58,17 @@ async function createInvitation(data) {
   if (responseJson["success"] === false) {
     throw new Error(responseJson["error"]);
   }
+}
+
+function setPossibleDates() {
+  const date = document.querySelector("input[name=\"date\"]");
+  let today = new Date();
+  let oneYearLater = new Date();
+  oneYearLater.setDate(today.getDate() + 365);
+
+  today = today.toISOString().slice(0, 10);
+  oneYearLater = oneYearLater.toISOString().slice(0, 10);
+
+  date.setAttribute("min", today);
+  date.setAttribute("max", oneYearLater);
 }
