@@ -59,6 +59,7 @@ nav ul li a {
 #invitations {
   width: 900px;
   margin: 100px auto;
+  gap: 70px;
   padding: 0 auto;
   border: 2px solid blueviolet;
   display: flex;
@@ -73,7 +74,20 @@ nav ul li a {
   font-size: 24px;
 }
 
-#invitations .invitation, .default-invitation{
+#invitations .likes-section p {
+  font-size: 18px;
+  font-style: italic;
+}
+
+#invitations .likes-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+#invitations .invitation,
+.default-invitation {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -81,13 +95,12 @@ nav ul li a {
   border: 2px solid blueviolet;
   background-color: white;
   border-radius: 25px;
-  padding: 70px;
+  padding: 20px 50px;
 }
 
 #invitations .invitation:not(:last-child) {
   margin-bottom: 100px;
   padding-bottom: 50px;
-  /*border-bottom: 2px solid blue; */
 }
 
 #invitations button {
@@ -98,36 +111,48 @@ nav ul li a {
   border: 1px solid blueviolet;
 }
 
+#invitations button:disabled {
+  cursor: no-drop;
+  color: #ccc;
+  opacity: 0.4;
+}
+
 #invitations img {
   width: 600px;
   height: 500px;
   border: 2px solid #3aaf9f;
 }
 
-/*#invitations .default-invitation {
-  width: 600px;
-  height: 300px;
-  border: 5px solid #3aaf9f;
-  margin-bottom: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-} */
+.hide {
+  display: none;
+}
 
 #invitations .default-invitation .content {
-  background-color: aqua;
+  background-color: beige;
   width: 100%;
 }
 
 #invitations .default-invitation h2 {
   padding-left: 10px;
+  padding-right: 10px;
   font-style: italic;
 }
 
-#invitations .default-invitation p {
+#invitations .default-invitation .content p {
   font-size: 24px;
+  margin-top: 10px;
   padding-left: 10px;
+  padding-right: 10px;
+}
+
+#invitations .default-invitation .like-message {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+#invitations .invitation .like-message {
+  font-size: 16px;
+  margin-top: 10px;
 }
 
 .lds-facebook {

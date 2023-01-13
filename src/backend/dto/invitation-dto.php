@@ -2,6 +2,7 @@
 
 class InvitationDto
 {
+    public $id;
     public $title;
     public $place;
 
@@ -16,6 +17,7 @@ class InvitationDto
     public $presenter;
 
     public function __construct(
+        $id,
         $title,
         $place,
         $date,
@@ -25,6 +27,7 @@ class InvitationDto
         $filename
     )
     {
+        $this->id = $id;
         $this->title = $title;
         $this->place = $place;
         $this->date = $date;

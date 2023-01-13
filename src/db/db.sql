@@ -25,3 +25,10 @@ CREATE TABLE invitations(
   presenter_fn INT REFERENCES users(fn) ON DELETE SET NULL,
   UNIQUE KEY unique_time(date, time)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+CREATE TABLE likes(
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  fn INT NOT NULL REFERENCES users(fn) ON DELETE CASCADE,
+  invitation_id INT NOT NULL REFERENCES invitations(id) ON DELETE CASCADE,
+  CONSTRAINT likes_constraint UNIQUE (fn, invitation_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;

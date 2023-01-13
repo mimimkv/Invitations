@@ -10,7 +10,7 @@
 
     if ($_SESSION) {
         if($_SESSION["email"]) {
-            $response = ["success" => true, "email" => $_SESSION["email"], "name" => $_SESSION["name"]];
+            $response = ["success" => true, "email" => $_SESSION["email"], "fn" => $_SESSION["fn"], "name" => $_SESSION["name"]];
         } else {
             $response = ["success" => false, "error" => "Unauthorized access"];
         }
