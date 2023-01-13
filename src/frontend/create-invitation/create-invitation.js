@@ -62,13 +62,14 @@ async function createInvitation(data) {
 
 function setPossibleDates() {
   const date = document.querySelector("input[name=\"date\"]");
-  let today = new Date();
+  let startDate = new Date();
   let oneYearLater = new Date();
-  oneYearLater.setDate(today.getDate() + 365);
+  startDate.setDate(startDate.getDate() + 1);
+  oneYearLater.setDate(startDate.getDate() + 365);
 
-  today = today.toISOString().slice(0, 10);
+  startDate = startDate.toISOString().slice(0, 10);
   oneYearLater = oneYearLater.toISOString().slice(0, 10);
 
-  date.setAttribute("min", today);
+  date.setAttribute("min", startDate);
   date.setAttribute("max", oneYearLater);
 }
