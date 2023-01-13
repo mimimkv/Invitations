@@ -1,4 +1,5 @@
 (() => {
+  setPossibleDates();
 
   const logoutButton = document.querySelector(".logout");
   logoutButton.addEventListener("click", (event) => {
@@ -78,3 +79,17 @@ input.addEventListener("change", (e) => {
     document.body.setAttribute("data-theme", "light");
   }
 });
+
+function setPossibleDates() {
+  const date = document.querySelector("input[name=\"date\"]");
+  let startDate = new Date();
+  let oneYearLater = new Date();
+  startDate.setDate(startDate.getDate() + 1);
+  oneYearLater.setDate(startDate.getDate() + 365);
+
+  startDate = startDate.toISOString().slice(0, 10);
+  oneYearLater = oneYearLater.toISOString().slice(0, 10);
+
+  date.setAttribute("min", startDate);
+  date.setAttribute("max", oneYearLater);
+}
