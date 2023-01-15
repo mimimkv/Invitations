@@ -33,65 +33,14 @@
   result["body"].forEach(async (element) => {
     const div = document.createElement("div");
     const defaultInvitation = document.createElement("section");
-    //const button = document.createElement("button");
-    //const likeMessage = document.createElement("p");
-    //likeMessage.classList.add('like-message');
-    //likeMessage.classList.add("hide");
-    //likeMessage.classList.add("like-message");
-    //likeMessage.innerHTML = "You have just liked this post.";
-    /*button.addEventListener("click", async () => {
-      createLike(element["id"]);
-      button.disabled = true;
-      likeMessage.classList.remove("hide"); */
-      //const likeMessage = document.createElement("p");
-      //likeMessage.classList.remove('hide');
-      /*console.log('hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
-        const likeNotification = document.createElement("p");
-        likeNotification.innerHTML = "You liked this post.";
-        div.appendChild(likeNotification); */
-      //defaultInvitation.appendChild(likeNotification);
-    //});
-    //button.innerHTML = "Like";
-
-    /*const allLikesCount = await getAllLikesForInvitation(element["id"]);
-    const all = document.createElement("p");
-    all.setAttribute("class", "all-likes");
-    if (allLikesCount === 0) {
-      all.classList.add("hide");
-    } else {
-      all.classList.remove("hide");
-
-      if (allLikesCount === 1) {
-        all.innerHTML = "1 user liked this";
-      } else {
-        all.innerHTML = allLikesCount + " users liked this";
-      }
-    } */
-
-    //const likesSection = document.createElement("section");
-    //likesSection.setAttribute("class", "likes-section");
-    //likesSection.appendChild(button);
-    //likesSection.appendChild(all);
-
     if (element["filename"] !== "NULL") {
       const image = document.createElement("img");
       image.setAttribute("src", "data:image/jpg;base64," + element["filename"]);
 
       div.appendChild(image);
-      //div.appendChild(likesSection);
       div.setAttribute("class", "invitation");
-      //div.appendChild(likeMessage);
 
       invitations.appendChild(div);
-
-      /*const isLiked = await isLikedByCurrentUser(userJson["fn"], element["id"]);
-      if (isLiked) {
-        div.getElementsByTagName("button")[0].disabled = true;
-        const likeNotification = document.createElement("p");
-        likeNotification.classList.add("like-message");
-        likeNotification.innerHTML = "You liked this post.";
-        div.appendChild(likeNotification);
-      } */
     } else {
       defaultInvitation.setAttribute("class", "default-invitation");
 
@@ -125,18 +74,8 @@
       content.appendChild(end);
 
       defaultInvitation.appendChild(content);
-      //defaultInvitation.appendChild(likesSection);
-      //defaultInvitation.appendChild(likeMessage);
 
       invitations.appendChild(defaultInvitation);
-      /*const isLiked = await isLikedByCurrentUser(userJson["fn"], element["id"]);
-      if (isLiked) {
-        defaultInvitation.getElementsByTagName("button")[0].disabled = true;
-        const likeNotification = document.createElement("p");
-        likeNotification.classList.add("like-message");
-        likeNotification.innerHTML = "You liked this post.";
-        defaultInvitation.appendChild(likeNotification);
-      } */
     }
   });
 })();
@@ -170,61 +109,3 @@ input.addEventListener("change", (e) => {
     document.body.setAttribute("data-theme", "light");
   }
 });
-
-/*async function createLike(invitationId) {
-  let data = {};
-  data["invitationId"] = invitationId;
-
-  const response = await fetch("../../backend/endpoints/create-like.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  const result = await response.json();
-  return result;
-}
-
-async function isLikedByCurrentUser(currentUser, invitationId) {
-  const response = await getAllLikes();
-  const allLikes = response["body"];
-  for (let i = 0; i < allLikes.length; i++) {
-    if (
-      allLikes[i]["invitation"]["id"] === invitationId &&
-      allLikes[i]["user"]["fn"] === currentUser
-    ) {
-      return true;
-    }
-  }
-
-  return false;
-} */
-
-/*function getLikesForCurrrentUser() {
-    const likes = getAllLikes;
-    
-  } */
-
-/*async function getAllLikes() {
-  const settings = { method: "GET" };
-  const url = "../../backend/endpoints/get-all-likes.php";
-
-  return await fetch(url, settings)
-    .then((response) => response.json())
-    .catch((error) => console.log(error));
-}
-
-async function getAllLikesForInvitation(invitationId) {
-  const response = await getAllLikes();
-  const allLikes = response["body"];
-  let counter = 0;
-  for (let i = 0; i < allLikes.length; i++) {
-    if (allLikes[i]["invitation"]["id"] === invitationId) {
-      counter++;
-    }
-  }
-
-  return counter;
-} */
