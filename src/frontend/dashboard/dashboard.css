@@ -2,7 +2,7 @@ body[data-theme="light"] {
   --color-1: white;
   --color-2: black;
   --color-3: #3aaf9f;
-  --color-4: #eee;   /* input field background */
+  --color-4: #eee; /* input field background */
   --color-5: cornflowerblue; /*used for navbar*/
   --color-6: blueviolet;
   --color-7: beige;
@@ -14,7 +14,7 @@ body[data-theme="dark"] {
   --color-2: white;
   --color-3: black;
   --color-4: rgb(214, 211, 211);
-  --color-5: #bb86fc; 
+  --color-5: #bb86fc;
   --color-6: black;
   --color-7: rgb(114, 147, 154);
   --color-8: rgb(54, 54, 119);
@@ -83,13 +83,11 @@ nav ul li a {
   margin: 100px auto;
   gap: 70px;
   padding: 0 auto;
-  /* border: 2px solid blueviolet; */
   border: 2px solid var(--color-6);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 70px;
-  /* background-color: white; */
   background-color: var(--color-1);
   border-radius: 25px;
 }
@@ -123,12 +121,6 @@ nav ul li a {
   border-radius: 25px;
   padding: 20px 50px;
 }
-
-/*
-#invitations .invitation:not(:last-child) {
-  margin-bottom: 100px;
-  padding-bottom: 50px;
-}*/
 
 #invitations button {
   font-size: 20px;
@@ -223,7 +215,7 @@ nav ul li a {
 .theme-switcher {
   position: absolute;
   right: 150px;
-  top: 45px; 
+  top: 45px;
 }
 
 .theme-switcher input {

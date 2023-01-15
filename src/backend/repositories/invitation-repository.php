@@ -46,7 +46,14 @@ class InvitationRepository
 
     public function getAllInvitations()
     {
-        $query = "SELECT * FROM invitations INNER JOIN users ON fn = presenter_fn";
+        $query = "SELECT * FROM invitations INNER JOIN users ON fn = presenter_fn ORDER BY date, time";
+        $rows = $this->db->executeQuery($query)->fetchAll();
+
+        return array_map(array('InvitationMapper', 'toModel'), $rows);
+    }
+
+    public function getUpcomingInvitations() {
+        $query = "SELECT * FROM invitations INNER JOIN users ON fn = presenter_fn WHERE date>=CURDATE() ORDER BY date, time";
         $rows = $this->db->executeQuery($query)->fetchAll();
 
         return array_map(array('InvitationMapper', 'toModel'), $rows);

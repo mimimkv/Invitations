@@ -14,16 +14,16 @@ class InvitationService
 
     public function createInvitation($title, $place, $date, $time, $endTime, $presenter_fn, $filename)
     {
+        if ($this->invitationRepository->findInvitationByPresenter($presenter_fn)) {
+            $this->invitationRepository->deleteInvitationByPresenter($presenter_fn);
+        }
+
         if ($this->invitationRepository->findInvitationByTitle($title)) {
             throw new InvalidArgumentException("Invitation with this title already exists");
         }
 
         if ($this->invitationRepository->findInvitationByDateAndTime($date, $time)) {
             throw new InvalidArgumentException("This time slot is already taken. Choose another one.");
-        }
-
-        if ($this->invitationRepository->findInvitationByPresenter($presenter_fn)) {
-            $this->invitationRepository->deleteInvitationByPresenter($presenter_fn);
         }
 
         $result = $this->invitationRepository->createInvitation($title, $place, $date, $time, $endTime, $presenter_fn, $filename);
@@ -34,6 +34,17 @@ class InvitationService
     public function getAllInvitations()
     {
         $invitations = $this->invitationRepository->getAllInvitations();
+        return $this->listInvitations($invitations);
+    }
+
+    public function getUpcomingInvitations()
+    {
+        $invitations = $this->invitationRepository->getUpcomingInvitations();
+        return $this->listInvitations($invitations);
+    }
+
+    public function listInvitations($invitations)
+    {
         foreach ($invitations as $i) {
             $filename = $i->getFilename();
             if ($filename !== null && $filename !== 'NULL') {
@@ -42,13 +53,9 @@ class InvitationService
             } else if ($filename === null) {
                 $i->setFilename('NULL');
             }
-
-            //echo $i->getFilename();
-            //echo $i->getTitle();
         }
 
         return array_map(array('InvitationMapper', 'toDto'), $invitations);
-
     }
 }
 
@@ -59,5 +66,8 @@ echo $result["title"]; */
 
 //$invitationService = new InvitationService();
 //$invitationService->getAllInvitations();
+
+/*$invitationService = new InvitationService();
+echo json_encode($invitationService->getUpcomingInvitations()); */
 
 ?>
