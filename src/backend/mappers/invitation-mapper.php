@@ -35,7 +35,8 @@ class InvitationMapper
         );
     }
 
-    public static function toPlainDto($invitation) {
+    public static function toPlainDto($invitation)
+    {
         return new InvitationDto(
             $invitation->getId(),
             $invitation->getTitle(),
@@ -43,7 +44,6 @@ class InvitationMapper
             $invitation->getDate(),
             $invitation->getTime(),
             $invitation->getEndTime(),
-            //UserMapper::toDto($invitation->getPresenter()),
             $invitation->getPresenter(),
             $invitation->getFilename()
         );

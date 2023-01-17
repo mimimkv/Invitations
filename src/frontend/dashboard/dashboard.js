@@ -35,7 +35,6 @@
     const defaultInvitation = document.createElement("section");
     const button = document.createElement("button");
     const likeMessage = document.createElement("p");
-    //likeMessage.classList.add('like-message');
     likeMessage.classList.add("hide");
     likeMessage.classList.add("like-message");
     likeMessage.innerHTML = "You have just liked this post.";
@@ -43,13 +42,6 @@
       createLike(element["id"]);
       button.disabled = true;
       likeMessage.classList.remove("hide");
-      //const likeMessage = document.createElement("p");
-      //likeMessage.classList.remove('hide');
-      /*console.log('hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
-      const likeNotification = document.createElement("p");
-      likeNotification.innerHTML = "You liked this post.";
-      div.appendChild(likeNotification); */
-      //defaultInvitation.appendChild(likeNotification);
     });
     button.innerHTML = "Like";
 
@@ -100,7 +92,7 @@
 
       const invitationMessage = document.createElement("h2");
       invitationMessage.innerHTML =
-        "Заповядайте на презентацията на " +
+        "You are invited to the presentation of " +
         element["presenter"]["firstName"] +
         " " +
         element["presenter"]["lastName"] +
@@ -149,7 +141,7 @@ const loadUser = (data) => {
     logout.insertBefore(hello, logout.firstChild);
   } else {
     console.log(data.error);
-    //window.location.replace("../login/login.html");
+    window.location.replace("../login/login.html");
   }
 };
 
@@ -201,11 +193,6 @@ async function isLikedByCurrentUser(currentUser, invitationId) {
 
   return false;
 }
-
-/*function getLikesForCurrrentUser() {
-  const likes = getAllLikes;
-  
-} */
 
 async function getAllLikes() {
   const settings = { method: "GET" };

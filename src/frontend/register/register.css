@@ -2,7 +2,7 @@ body[data-theme="light"] {
   --color-1: white;
   --color-2: black;
   --color-3: #3aaf9f;
-  --color-4: #eee;   /* input field background */
+  --color-4: #eee; /* input field background */
 }
 
 body[data-theme="dark"] {
@@ -89,13 +89,13 @@ body {
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 .error {
-    color: red;
-    margin-top: 5px;
-    margin-left: 10px;
+  color: red;
+  margin-top: 5px;
+  margin-left: 10px;
 }
 
 .theme-switcher {
@@ -145,13 +145,13 @@ body {
   border: 2px solid whitesmoke;
 }
 
-@media (max-width: 930px)  {
+@media (max-width: 930px) {
   .registration {
     width: 400px;
     margin: 70px auto;
     padding-bottom: 30px;
   }
-  
+
   .registration h1 {
     font-size: 24px;
   }
@@ -161,7 +161,7 @@ body {
     font-size: 14px;
     padding: 5px;
   }
-  
+
   .registration form button {
     font-size: 18px;
     width: 60%;
@@ -191,7 +191,7 @@ body {
     width: 15px;
     height: 15px;
   }
-  
+
   .theme-switcher input:checked + label::after {
     left: calc(100% - 20px);
   }

@@ -29,31 +29,38 @@ class UserModel
         $this->specialty = $specialty;
     }
 
-    public function getFn() {
+    public function getFn()
+    {
         return $this->fn;
     }
 
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->password;
     }
 
-    public function getFirstName() {
+    public function getFirstName()
+    {
         return $this->firstName;
     }
 
-    public function getLastName() {
+    public function getLastName()
+    {
         return $this->lastName;
     }
 
-    public function getCourse() {
+    public function getCourse()
+    {
         return $this->course;
     }
 
-    public function getSpecialty() {
+    public function getSpecialty()
+    {
         return $this->specialty;
     }
 }

@@ -15,20 +15,11 @@
       data[i.name] = i.value;
     });
 
-    //const email = data['email'];
-    //if (!isValidEmail(email))
-    /*if (true) {
-        const emailError = document.getElementById('email-error');
-        emailError.classList.add('error');
-        emailError.classList.remove('hide');
-        emailError.innerText = 'Invalid email address';
-    } */
-
-
     saveUser(data)
       .then(() => {
-          window.location.replace("../login/login.html");
-      }).catch((error) => {
+        window.location.replace("../login/login.html");
+      })
+      .catch((error) => {
         formError.classList.add("error");
         formError.classList.remove("hide");
         const message = error;
@@ -38,22 +29,18 @@
 })();
 
 async function saveUser(data) {
-  const response = await fetch(
-    "../../backend/endpoints/register.php",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }
-  );
+  const response = await fetch("../../backend/endpoints/register.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
 
   const responseJson = await response.json();
   if (responseJson["success"] === false) {
     throw new Error(responseJson["error"]);
   }
-
 }
 
 const input = document.querySelector(".theme-switcher input");

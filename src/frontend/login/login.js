@@ -1,9 +1,9 @@
 (() => {
-  const loginForm = document.querySelector('.login');
-  const input = document.querySelectorAll('.input');
+  const loginForm = document.querySelector(".login");
+  const input = document.querySelectorAll(".input");
   const formError = document.getElementById("form-error");
 
-  loginForm.addEventListener('submit', (event) => {
+  loginForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
     formError.classList.remove("error");
@@ -18,15 +18,15 @@
       .then(() => {
         window.location.replace("../dashboard/dashboard.html");
         localStorage.setItem("isLoggedIn", true);
-      }).catch((error) => {
+      })
+      .catch((error) => {
         formError.classList.add("error");
         formError.classList.remove("hide");
         const message = error;
         formError.innerText = message;
-      });      
+      });
   });
-    
-}) ();
+})();
 
 async function loadUser(user) {
   const settings = {
@@ -38,8 +38,9 @@ async function loadUser(user) {
   };
   const url = "../../backend/endpoints/login.php";
 
-  const responseJson = await fetch(url, settings)
-    .then(response => response.json());
+  const responseJson = await fetch(url, settings).then((response) =>
+    response.json()
+  );
 
   if (responseJson["success"] === false) {
     throw new Error(responseJson["error"]);

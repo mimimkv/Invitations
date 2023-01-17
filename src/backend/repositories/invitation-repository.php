@@ -52,7 +52,8 @@ class InvitationRepository
         return array_map(array('InvitationMapper', 'toModel'), $rows);
     }
 
-    public function getUpcomingInvitations() {
+    public function getUpcomingInvitations()
+    {
         $query = "SELECT * FROM invitations INNER JOIN users ON fn = presenter_fn WHERE date>=CURDATE() ORDER BY date, time";
         $rows = $this->db->executeQuery($query)->fetchAll();
 
@@ -67,7 +68,8 @@ class InvitationRepository
         return $invitation;
     }
 
-    public function findInvitationByPresenter($presenter_fn) {
+    public function findInvitationByPresenter($presenter_fn)
+    {
         $query = "SELECT * FROM invitations WHERE presenter_fn=:presenter_fn";
         $params = ["presenter_fn" => $presenter_fn];
 
@@ -75,7 +77,8 @@ class InvitationRepository
         return $invitation;
     }
 
-    public function deleteInvitationByPresenter($presenter_fn) {
+    public function deleteInvitationByPresenter($presenter_fn)
+    {
         $query = "DELETE FROM invitations WHERE presenter_fn=:presenter_fn";
         $params = ["presenter_fn" => $presenter_fn];
 
