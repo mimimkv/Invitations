@@ -40,7 +40,7 @@ class InvitationRepository
         $query = "SELECT * FROM invitations WHERE title=:title";
         $params = ["title" => $title];
 
-        $invitation = $this->db->executeQuery($query, $params)->fetch();
+        $invitation = $this->db->executeQuery($query, $params)->fetch(PDO::FETCH_ASSOC);
         return $invitation;
     }
 

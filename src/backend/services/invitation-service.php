@@ -14,12 +14,13 @@ class InvitationService
 
     public function createInvitation($title, $place, $date, $time, $endTime, $presenter_fn, $filename)
     {
-        if ($this->invitationRepository->findInvitationByPresenter($presenter_fn)) {
-            $this->invitationRepository->deleteInvitationByPresenter($presenter_fn);
+        $invitation = $this->invitationRepository->findInvitationByTitle($title);
+        if ($invitation && $invitation["presenter_fn"] !== $_SESSION["fn"]) {
+            throw new InvalidArgumentException("Invitation with this title already exists");
         }
 
-        if ($this->invitationRepository->findInvitationByTitle($title)) {
-            throw new InvalidArgumentException("Invitation with this title already exists");
+        if ($this->invitationRepository->findInvitationByPresenter($presenter_fn)) {
+            $this->invitationRepository->deleteInvitationByPresenter($presenter_fn);
         }
 
         if ($this->invitationRepository->findInvitationByDateAndTime($date, $time)) {
