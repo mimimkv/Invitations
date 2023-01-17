@@ -19,7 +19,8 @@ class UserController
 
         try {
             $this->userService->addUser(
-                $userModel->getFn(), $userModel->getEmail(), $passwordHash, $userModel->getFirstName(),
+                $userModel->getFn(), $userModel->getEmail(),
+                $passwordHash, $userModel->getFirstName(),
                 $userModel->getLastName(), $userModel->getCourse(), $userModel->getSpecialty()
             );
         } catch (InvalidArgumentException $e) {
@@ -31,11 +32,10 @@ class UserController
         return $response;
     }
 
-    public function login() 
+    public function login()
     {
         session_start();
         $userCredentials = json_decode(file_get_contents('php://input'), true);
-        //echo $userCredentials["email"];
 
         $email = $userCredentials["email"];
         $password = $userCredentials["password"];
@@ -45,21 +45,17 @@ class UserController
         try {
             $user = $this->userService->isUserValid($email, $password);
 
-        } catch(InvalidArgumentException $e) {
+        } catch (InvalidArgumentException $e) {
             $response["success"] = false;
             $response["error"] = $e->getMessage();
         }
-
-        //print_r($user);
 
         if (isset($user)) {
             $_SESSION["email"] = $email;
             $_SESSION["name"] = $user["first_name"];
             $_SESSION["fn"] = $user["fn"];
         }
-        
-        // echo $user['first_name'];
-        
+
         return $response;
     }
 }

@@ -11,7 +11,7 @@ class InvitationDto
     public $time;
 
     public $endTime;
-    
+
     public $filename;
 
     public $presenter;
@@ -47,23 +47,28 @@ class InvitationDto
         return $this->place;
     }
 
-    public function getPresener() {
+    public function getPresener()
+    {
         return $this->presenter;
     }
 
-    public function getFilename() {
+    public function getFilename()
+    {
         return $this->filename;
     }
 
-    public function getDate() {
+    public function getDate()
+    {
         return $this->date;
     }
 
-    public function getTime() {
+    public function getTime()
+    {
         return $this->time;
     }
 
-    public function getEndTime() {
+    public function getEndTime()
+    {
         return $this->endTime;
     }
 }

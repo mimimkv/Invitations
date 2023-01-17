@@ -88,7 +88,7 @@ const loadUser = (data) => {
     logout.insertBefore(hello, logout.firstChild);
   } else {
     console.log(data.error);
-    //window.location.replace("../login/login.html");
+    window.location.replace("../login/login.html");
   }
 };
 

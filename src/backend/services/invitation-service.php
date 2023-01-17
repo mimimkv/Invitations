@@ -59,15 +59,4 @@ class InvitationService
     }
 }
 
-//for testing purposes
-/*$invitationService = new InvitationService();
-$result = $invitationService->createInvitation("test", "test");
-echo $result["title"]; */
-
-//$invitationService = new InvitationService();
-//$invitationService->getAllInvitations();
-
-/*$invitationService = new InvitationService();
-echo json_encode($invitationService->getUpcomingInvitations()); */
-
 ?>

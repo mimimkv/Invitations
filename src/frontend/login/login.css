@@ -2,7 +2,7 @@ body[data-theme="light"] {
   --color-1: white;
   --color-2: black;
   --color-3: #3aaf9f;
-  --color-4: #eee;   /* input field background */
+  --color-4: #eee; /* input field background */
 }
 
 body[data-theme="dark"] {
@@ -56,7 +56,7 @@ body {
   padding: 7px;
   color: var(--color-1);
   background-color: var(--color-3);
-  border: none;
+  border: 2px solid transparent;
 }
 
 .login form button:hover {
@@ -89,15 +89,15 @@ body {
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 .error {
-    color: red;
-    margin-top: 5px;
-    margin-left: 10px;
+  color: red;
+  margin-top: 5px;
+  margin-left: 10px;
 }
-  
+
 .theme-switcher {
   position: absolute;
   right: 30px;
@@ -143,4 +143,56 @@ body {
 .theme-switcher input:checked + label {
   background-color: rgb(25, 26, 37);
   border: 2px solid whitesmoke;
+}
+
+@media (max-width: 930px) {
+  .login {
+    width: 400px;
+    margin: 70px auto;
+    padding-bottom: 30px;
+  }
+
+  .login h1 {
+    font-size: 24px;
+  }
+
+  .login form input {
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  .login form button {
+    font-size: 18px;
+    width: 60%;
+    margin: 10px auto 0;
+    padding: 5px;
+  }
+
+  .login .registration {
+    font-size: 14px;
+  }
+
+  .error {
+    font-size: 12px;
+  }
+
+  .theme-switcher {
+    right: 10px;
+    top: 5px;
+  }
+
+  .theme-switcher label {
+    height: 20px;
+    width: 40px;
+  }
+
+  .theme-switcher label::after {
+    width: 15px;
+    height: 15px;
+  }
+
+  .theme-switcher input:checked + label::after {
+    left: calc(100% - 20px);
+  }
 }

@@ -1,6 +1,7 @@
 <?php
 
-class UserDto {
+class UserDto
+{
     public $fn;
     public $email;
     public $firstName;
@@ -25,27 +26,33 @@ class UserDto {
         $this->specialty = $specialty;
     }
 
-    public function getFn() {
+    public function getFn()
+    {
         return $this->fn;
     }
 
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    public function getFirstName() {
+    public function getFirstName()
+    {
         return $this->firstName;
     }
 
-    public function getLastName() {
+    public function getLastName()
+    {
         return $this->lastName;
     }
 
-    public function getCourse() {
+    public function getCourse()
+    {
         return $this->course;
     }
 
-    public function getSpecialty() {
+    public function getSpecialty()
+    {
         return $this->specialty;
     }
 }

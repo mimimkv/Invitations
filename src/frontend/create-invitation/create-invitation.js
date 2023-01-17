@@ -23,18 +23,10 @@
 
     formError.innerHTML = null;
 
-    /*let data = {};
-    inputs.forEach((i) => {
-      data[i.name] = i.value;
-    }); */
-
     const formData = new FormData();
 
     formData.append(inputs[0].name, inputs[0].value);
     formData.append(inputs[1].name, inputs[1].value);
-    console.log(inputs[2].name);
-    console.log(inputs[3].name);
-    console.log(inputs[4].name);
 
     formData.append(inputs[2].name, inputs[2].value);
     formData.append(inputs[3].name, inputs[3].value);
@@ -58,10 +50,7 @@ async function createInvitation(data) {
     "../../backend/endpoints/create-invitation.php",
     {
       method: "POST",
-      /*headers: {
-        "Content-Type": "application/json",
-      }, */
-      body: data
+      body: data,
     }
   );
 
@@ -81,7 +70,7 @@ input.addEventListener("change", (e) => {
 });
 
 function setPossibleDates() {
-  const date = document.querySelector("input[name=\"date\"]");
+  const date = document.querySelector('input[name="date"]');
   let startDate = new Date();
   let oneYearLater = new Date();
   startDate.setDate(startDate.getDate() + 1);

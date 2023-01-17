@@ -20,9 +20,7 @@ class LikeController
 
 
         try {
-            //echo $_SESSION["fn"];
             $this->likeService->createLike($_SESSION["fn"], $invitationId);
-            //$this->likeService->createLike(11111, $invitationId);
         } catch (InvalidArgumentException $e) {
             $response["success"] = false;
             $response["error"] = $e->getMessage();
@@ -31,12 +29,12 @@ class LikeController
         return $response;
     }
 
-    public function getAllLikes() {
+    public function getAllLikes()
+    {
         $response = ["success" => true];
         try {
             $likes = $this->likeService->getAllLikes();
             $response["body"] = $likes;
-            //echo $invitations[0]->getTitle();
         } catch (Exception $e) {
             $response["success"] = false;
             $response["error"] = $e->getMessage();

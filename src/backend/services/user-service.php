@@ -18,7 +18,8 @@ class UserService
         return array_map(array('UserMapper', 'toDto'), $users);
     }
 
-    function addUser($fn, $email, $password, $firstName, $lastName, $course, $specialty) {
+    function addUser($fn, $email, $password, $firstName, $lastName, $course, $specialty)
+    {
         if ($this->userRepository->findUserByFn($fn)) {
             throw new InvalidArgumentException("User with fn $fn already exists.");
         }
@@ -31,17 +32,14 @@ class UserService
         return $result;
     }
 
-    function isUserValid($email, $password) {
+    function isUserValid($email, $password)
+    {
         $user = $this->userRepository->findUserByEmail($email);
 
-        // echo "user: ";
-        // print_r($user);
-        
         if (empty($user)) {
             throw new InvalidArgumentException("User with email $email does not exist.");
         }
 
-        // if ($user["password"] !== $password) {
         if (!password_verify($password, $user["password"])) {
             throw new InvalidArgumentException("Invalid password");
         }
@@ -49,22 +47,6 @@ class UserService
         return $user;
     }
 }
-
-//for testing purposes
-/*$userService = new UserService();
-$result = $userService->getAllUsers();
-
-echo json_encode($result, JSON_UNESCAPED_UNICODE);
-
-try {
-    if ($userService->addUser(123456, '123', 'test3@gmail.com', 'Test', 'Test', 4, 'KN')) {
-        echo "User added successfully";
-    } else {
-        echo "Error";
-    }
-} catch(InvalidArgumentException $e) {
-    echo $e->getMessage();
-} */
 
 
 ?>

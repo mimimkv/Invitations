@@ -8,13 +8,13 @@ class UserMapper
     public static function toModel($data)
     {
         return new UserModel(
-                $data['fn'],
-                $data['email'],
-                $data['password'],
-                $data['first_name'],
-                $data['last_name'],
-                $data['course'],
-                $data['specialty']
+            $data['fn'],
+            $data['email'],
+            $data['password'],
+            $data['first_name'],
+            $data['last_name'],
+            $data['course'],
+            $data['specialty']
         );
     }
 
