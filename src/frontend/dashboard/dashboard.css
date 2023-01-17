@@ -68,12 +68,6 @@ nav ul li a {
   border-radius: 5px;
 }
 
-.loading-indicator {
-  width: 200px;
-  padding: auto;
-  margin: 150px auto;
-}
-
 .hide {
   visibility: hidden;
 }
@@ -174,7 +168,7 @@ nav ul li a {
 
 .theme-switcher {
   position: absolute;
-  right: 150px;
+  right: 160px;
   top: 45px;
 }
 
